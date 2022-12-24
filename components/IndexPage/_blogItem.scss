@@ -1,0 +1,52 @@
+@use "../../styles/modules/mixins" as *;
+
+.blogitem {
+  @include font-small(1.1);
+  @include fd-c(0.8em);
+  justify-content: space-between;
+  width: max-content;
+  background-image: linear-gradient(
+    23.05deg,
+    var(--clr-primary-800) 9.87%,
+    var(--clr-secondary-700) 125.08%
+  );
+  padding: 0.8em;
+  border-radius: 0.3em;
+  cursor: pointer;
+  box-shadow: 0 0.3rem 0.7em var(--clr-primary-900);
+  width: 100%;
+  max-height: max-content;
+
+  @include mq("pointer") {
+    box-shadow: 0 0.3rem 0.3em var(--clr-primary-900);
+    &:where(:hover, :active, :focus) {
+      box-shadow: 0 0.3rem 0.7em var(--clr-primary-900);
+    }
+  }
+
+  &__title {
+    font-size: 1.2em;
+    color: var(--clr-primary-100);
+    font-family: "Inria Serif", serif;
+    font-style: italic;
+    letter-spacing: 0.02em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__time {
+    color: var(--clr-primary-200);
+    font-family: "Ubuntu", sans-serif;
+    font-size: 0.55em;
+    text-align: right;
+  }
+
+  &--loading {
+    @include fc;
+    img {
+      $size: 3em;
+      height: $size;
+      width: $size;
+    }
+  }
+}

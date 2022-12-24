@@ -1,0 +1,82 @@
+@use "../../styles/modules/mixins" as *;
+
+.blog {
+  @include font-medium;
+  @include fd-c(4em);
+
+  &__title {
+    font-size: 2.1em;
+    position: relative;
+    font-family: "Inria Serif", serif;
+    font-style: italic;
+    font-weight: bold;
+
+    &::after {
+      content: attr(data-time);
+      font-size: 0.35em;
+      font-family: "Ubuntu", sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      color: var(--clr-primary-200);
+      position: absolute;
+      bottom: -2.5em;
+      left: 0;
+    }
+  }
+
+  &__content {
+    @include fd-c(0.8em);
+    font-family: "Lora", serif;
+    font-size: 0.8em;
+    line-height: 1.5;
+    letter-spacing: 0.023em;
+
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: .3em;
+      display: block;
+      margin-block: .7em;
+    }
+
+    &__code {
+      font-size: 0.9em;
+      position: relative;
+      &:hover > .copy {
+        visibility: visible;
+      }
+    }
+  }
+
+  &--wrapper {
+    @include fd-c(1em);
+    @include font-medium;
+    max-width: 55rem;
+    margin: 0 auto;
+    padding: 1em 1em 3em;
+
+    scroll-behavior: smooth;
+  }
+
+  &--back {
+    @include font-small(1.1);
+    @include pill;
+    @include f-ai(0.4em);
+    width: max-content;
+    font-family: "Lato", sans-serif;
+    background-color: transparent;
+    cursor: pointer;
+
+    svg {
+      $size: 1em;
+      height: $size;
+      width: calc($size * 1.1);
+      fill: var(--clr-secondary-400);
+    }
+
+    span {
+      font-size: 0.9em;
+      color: var(--clr-primary-100);
+    }
+  }
+}

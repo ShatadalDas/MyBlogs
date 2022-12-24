@@ -1,0 +1,34 @@
+@use "../../../styles/modules/mixins" as *;
+
+.copy {
+  @include gc;
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  height: 2em;
+  aspect-ratio: 1;
+  background-color: var(--clr-primary-900);
+  border-radius: 50%;
+  font-size: 1.2em;
+  cursor: pointer;
+
+  
+  &__icon {
+    fill: var(--clr-primary-100);
+  }
+  
+  span {
+    color: hsl(120, 100%, 50%);
+    font-size: .6em;
+    position: absolute;
+    left: -4.5em;
+  }
+  &--done {
+    fill: hsl(120, 100%, 50%);
+  }
+
+  @include mq("pointer") {
+    visibility: hidden;
+    transition: visibility 100ms ease-in-out;
+  }
+}

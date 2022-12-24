@@ -1,0 +1,28 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  text-rendering: optimizeLegibility;
+  box-sizing: border-box;
+}
+
+a,
+a:where(:visited, :focus, :active) {
+  text-decoration: none;
+  color: inherit;
+}
+
+input,
+button,
+textarea {
+  outline: none;
+  border: none;
+  font: inherit;
+}
+
+body {
+  // background: var(--clr-primary-850);
+  background: linear-gradient(45deg, var(--clr-secondary-850), var(--clr-neutral-850));
+  color: var(--clr-primary-100);
+}

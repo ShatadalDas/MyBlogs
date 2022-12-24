@@ -1,0 +1,83 @@
+@use "../../styles/modules/mixins" as *;
+
+.nav {
+  @include font-medium(1);
+  @include f-ai(0) {
+    justify-content: space-between;
+  }
+  padding: 0.4em 1.5em;
+  max-width: 2400px;
+  margin: 0 auto;
+
+  &__logo {
+    font-family: "Lobster", cursive;
+    color: var(--clr-primary-100);
+
+    :first-child {
+      color: var(--clr-neutral-400);
+    }
+    :last-child {
+      color: var(--clr-secondary-400);
+    }
+  }
+
+  &__list {
+    list-style: none;
+    @include f-ai(1.2em);
+  }
+
+  &__item {
+    button {
+      @include fc;
+      @include circle;
+      padding: 0.4em;
+      cursor: pointer;
+      box-shadow: 0 0 0.2em var(--clr-primary-900);
+      @include mq("not pointer") {
+        border-radius: 0.2em;
+        gap: 0.2em;
+        padding: 0.4em 0.6em;
+      }
+
+      &::after {
+        content: attr(data-name);
+        color: var(--clr-primary-100);
+        font-family: "Manrope", sans-serif;
+        font-weight: 800;
+        font-size: 0.6em;
+        @include mq("pointer") {
+          font-size: 0;
+          transition: font-size 100ms ease-in-out;
+        }
+      }
+
+      @include mq("pointer") {
+        &:hover,
+        &:focus,
+        &:active {
+          border-radius: 0.2em;
+          gap: 0.2em;
+          scale: 1;
+          padding: 0.4em 0.5em;
+          &::after {
+            font-size: 0.6em;
+          }
+        }
+      }
+
+      img {
+        $size: 0.6em;
+        height: $size;
+        width: $size;
+      }
+    }
+  }
+
+  &--admin {
+    background-color: var(--clr-neutral-500);
+  }
+
+  &--code {
+    background-color: var(--clr-secondary-400);
+  }
+}

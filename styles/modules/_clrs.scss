@@ -1,0 +1,40 @@
+:root {
+  --clr-primary-100: hsl(0 0% 100% / 0.95);
+  --clr-primary-200: hsl(274 100% 83%);
+  --clr-primary-300: hsl(280 100% 60%);
+  --clr-primary-400: hsl(274 100% 50%);
+  --clr-primary-500: hsl(274 100% 35%);
+  --clr-primary-600: hsl(274 100% 23%);
+  --clr-primary-700: hsl(274 100% 19%);
+  --clr-primary-800: hsl(273 98% 12%);
+  --clr-primary-850: hsl(274 100% 8%);
+  --clr-primary-900: hsl(273 100% 5%);
+
+  --clr-secondary-100: hsl(337 96% 80%);
+  --clr-secondary-200: hsl(337 96% 70%);
+  --clr-secondary-300: hsl(337 96% 60%);
+  --clr-secondary-400: hsl(337 96% 50%);
+  --clr-secondary-500: hsl(318 100% 40%);
+  --clr-secondary-600: hsl(318 100% 30%);
+  --clr-secondary-700: hsl(318 100% 20%);
+  --clr-secondary-800: hsl(318 100% 15%);
+  --clr-secondary-850: hsl(318 100% 10%);
+  --clr-secondary-900: hsl(318 100% 5%);
+
+  --clr-neutral-100: hsl(216 100% 80%);
+  --clr-neutral-200: hsl(216 100% 70%);
+  --clr-neutral-300: hsl(216 100% 60%);
+  --clr-neutral-400: hsl(216 100% 51%);
+  --clr-neutral-500: hsl(241 63% 50%);
+  --clr-neutral-600: hsl(241 63% 40%);
+  --clr-neutral-700: hsl(241 63% 30%);
+  --clr-neutral-800: hsl(241 63% 20%);
+  --clr-neutral-850: hsl(241 63% 10%);
+  --clr-neutral-900: hsl(241 63% 5%);
+
+  --gradient: linear-gradient(
+    23.05deg,
+    var(--clr-primary-700) 9.87%,
+    var(--clr-secondary-600) 125.08%
+  );
+}

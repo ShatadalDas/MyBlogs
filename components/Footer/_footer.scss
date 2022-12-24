@@ -1,0 +1,18 @@
+@use "../../styles/modules/mixins" as *;
+
+.footer {
+  @include font-small;
+  background-color: var(--clr-secondary-850);
+  color: var(--clr-primary-100);
+  padding: 1em 0;
+  box-shadow: 0.1em 0 0.5em var(--clr-primary-900);
+
+  &__text {
+    text-align: center;
+    font-family: "Inconsolata", serif;
+    font-weight: 600;
+    &__email {
+      font-weight: normal;
+    }
+  }
+}
