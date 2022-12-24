@@ -12,7 +12,7 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import Head from "next/head";
 
-function blog({
+function Blog({
   data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const router = useRouter();
@@ -103,4 +103,4 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   };
 }
 
-export default blog;
+export default Blog;
