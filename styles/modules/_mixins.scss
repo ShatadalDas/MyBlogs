@@ -77,13 +77,13 @@
 }
 
 @mixin font-small($mult: 1) {
-  font-size: calc(clamp(0.8rem, 2vw + 0.5vh + 0.1rem, 1.4rem) * $mult);
+  font-size: calc(clamp(0.9rem, 2vw + 0.5vh + 0.1rem, 1.4rem) * $mult);
 }
 
 @mixin font-medium($mult: 1) {
-  font-size: calc(clamp(1rem, 3vw + 0.5vh + 0.1rem, 1.8rem) * $mult);
+  font-size: calc(clamp(1.2rem, 3vw + 0.5vh + 0.1rem, 1.8rem) * $mult);
 }
 
 @mixin font-large($mult: 1) {
-  font-size: calc(clamp(1.5rem, 4vw + 1vh + 0.1rem, 2.5em) * $mult);
+  font-size: calc(clamp(1.6rem, 4vw + 1vh + 0.1rem, 2.5em) * $mult);
 }

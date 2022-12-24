@@ -5,7 +5,7 @@
   @include fd-c(4em);
 
   &__title {
-    font-size: 2.1em;
+    font-size: 2.2em;
     position: relative;
     font-family: "Inria Serif", serif;
     font-style: italic;
@@ -13,7 +13,7 @@
 
     &::after {
       content: attr(data-time);
-      font-size: 0.35em;
+      font-size: 0.3em;
       font-family: "Ubuntu", sans-serif;
       font-style: normal;
       font-weight: 500;
@@ -25,18 +25,27 @@
   }
 
   &__content {
-    @include fd-c(0.8em);
+    @include fd-c(0.9em);
     font-family: "Lora", serif;
-    font-size: 0.8em;
+    font-size: 0.9em;
     line-height: 1.5;
     letter-spacing: 0.023em;
+    p {
+      font-weight: 500;
+      em {
+        font-size: .95;
+        font-style: italic;
+        font-weight: normal;
+        margin-inline: .1em;
+      }      
+    }
 
     img {
       width: 100%;
       height: auto;
-      border-radius: .3em;
+      border-radius: 0.3em;
       display: block;
-      margin-block: .7em;
+      margin-block: 0.7em;
     }
 
     &__code {
@@ -59,12 +68,14 @@
   }
 
   &--back {
-    @include font-small(1.1);
+    @include font-small(1.15);
     @include pill;
     @include f-ai(0.4em);
     width: max-content;
     font-family: "Lato", sans-serif;
+    font-weight: 600;
     background-color: transparent;
+    padding-block: 1em;
     cursor: pointer;
 
     svg {
