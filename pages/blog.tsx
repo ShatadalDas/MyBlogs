@@ -22,6 +22,7 @@ function Blog({
   return (
     <>
       <Head>
+        <title>{data.title}</title>
         <meta name="description" content={data.metaDescription} />
       </Head>
       <LoadingBar show={loading} />

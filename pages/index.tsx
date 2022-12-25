@@ -5,6 +5,7 @@ import clamp from "../utils/functions/clamp";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { InferGetServerSidePropsType } from "next";
 import LoadingBar from "../utils/components/LoadingBar";
+import Head from "next/head";
 
 let start = 0;
 let end = 0;
@@ -31,6 +32,10 @@ function Index(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
 
   return (
     <>
+    <Head>
+        <title>Blogs of Shatadal Das</title>
+    </Head>
+
       <LoadingBar show={loading} />
       <div className="index">
         <Navbar />
