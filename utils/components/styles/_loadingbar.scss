@@ -2,7 +2,6 @@
 
 .loading-bar {
     height: .09rem;
-    // background-color: var(--clr-neutral-400);
     position: relative;
     overflow-x: hidden;
     &::before {
@@ -10,9 +9,8 @@
         height: 100%;
         width: 100%;
         position: absolute;
-        top: 0;
-        left: 0;
-        background-color: var(--clr-secondary-400);
+        inset: 0;
+        background-color: var(--clr-neutral-400);
         translate: -100% 0;
     }   
 }
