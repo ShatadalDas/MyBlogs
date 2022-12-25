@@ -4,6 +4,7 @@
     height: .09rem;
     // background-color: var(--clr-neutral-400);
     position: relative;
+    overflow-x: hidden;
     &::before {
         content: "";
         height: 100%;
