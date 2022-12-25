@@ -13,6 +13,8 @@ export default function App({ Component, pageProps }: AppProps) {
           name="google-site-verification"
           content="48qvYpzsAXb5Uy2-GinHDprntgoEin-EU98SvXyj9wQ"
         />
+        <meta name="keywords" content="C++ Shatadal Das Blog" />
+        <meta name="description" content="Shatadal Das Blogs" />
       </Head>
       <Component {...pageProps} />
     </>
