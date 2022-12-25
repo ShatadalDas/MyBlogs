@@ -1,0 +1,29 @@
+@use "../../../styles/modules/mixins" as *;
+
+.loading-bar {
+    height: .09rem;
+    // background-color: var(--clr-neutral-400);
+    position: relative;
+    &::before {
+        content: "";
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: var(--clr-secondary-400);
+        translate: -100% 0;
+    }   
+}
+
+.loading--start {
+    &::before {
+        animation: loadingBar 1s infinite ease-in-out;        
+    }
+}
+
+@keyframes loadingBar {
+    to {
+        translate: 100% 0;
+    }
+}

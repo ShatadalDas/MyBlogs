@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { type OneBlogType } from "./api/getOneBlog";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
@@ -11,18 +11,28 @@ import { Footer } from "../components";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Head from "next/head";
+import LoadingBar from "../utils/components/LoadingBar";
 
 function Blog({
   data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
+
   return (
     <>
       <Head>
         <meta name="description" content={data.metaDescription} />
       </Head>
+      <LoadingBar show={loading} />
       <div className="blog--wrapper">
-        <button className="blog--back" onClick={() => router.back()}>
+        <button
+          className="blog--back"
+          onClick={() => {
+            router.back();
+            setLoading(true);
+          }}
+        >
           <svg
             width="47"
             height="30"
@@ -51,7 +61,7 @@ function Blog({
                     </pre>
                   );
                 },
-                img: ({src, alt}) => {
+                img: ({ src, alt }) => {
                   return (
                     <Image
                       src={

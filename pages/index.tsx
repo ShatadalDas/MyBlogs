@@ -4,6 +4,7 @@ import { AllBlogsType } from "./api/getAllBlogs";
 import clamp from "../utils/functions/clamp";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { InferGetServerSidePropsType } from "next";
+import LoadingBar from "../utils/components/LoadingBar";
 
 let start = 0;
 let end = 0;
@@ -11,6 +12,7 @@ let end = 0;
 function Index(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const totalBlogs = props.totalBlogs;
   const [blogs, setBlogs] = useState<AllBlogsType[]>(props.blogs);
+  const [loading, setLoading] = useState(false);
 
   async function fetchData() {
     try {
@@ -29,6 +31,7 @@ function Index(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
 
   return (
     <>
+      <LoadingBar show={loading} />
       <div className="index">
         <Navbar />
         <main className="index__blogs">
@@ -39,7 +42,13 @@ function Index(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
             loader={<BlogItemLoading />}
           >
             {blogs.map((item) => (
-              <BlogItem key={item._id} title={item.title} time={item.time} id={item._id}/>
+              <BlogItem
+                key={item._id}
+                title={item.title}
+                time={item.time}
+                id={item._id}
+                setLoading={setLoading}
+              />
             ))}
           </InfiniteScroll>
         </main>

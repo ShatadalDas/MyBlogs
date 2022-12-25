@@ -24,7 +24,7 @@ function Navbar() {
           </Link>
         </li>
         <li className="nav__item">
-          <Link href="/" legacyBehavior>
+          <Link href="https://github.com/ShatadalDas/MyBlogs" legacyBehavior>
             <a>
               <button className="nav--code" data-name="Code">
                 <Image
