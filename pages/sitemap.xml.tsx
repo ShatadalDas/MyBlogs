@@ -19,7 +19,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
                     <loc>${process.env.DOMAIN}/${createUrl(item.title)}/?id=${
                 item._id
               }</loc>
-                <lastmod>${item.time.split(" ")[0]}</lastmod>
+                <lastmod>${formatDate(item.time.split(" ")[0])}</lastmod>
         </url>`
           )
           .join("")}
@@ -34,5 +34,12 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
     props: {},
   };
 };
+
+function formatDate(date: string) {
+  let words = date.split("-");
+  words = words.reverse();
+  const formatedDate = words.join("-");
+  return formatedDate;
+}
 
 export default Sitemap;
