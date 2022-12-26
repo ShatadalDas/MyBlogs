@@ -16,7 +16,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
           .map(
             (item: BlogsTitlesType) =>
               `<url>
-                    <loc>${process.env.DOMAIN}/${createUrl(item.title)}/?id=${
+                    <loc>${process.env.DOMAIN}/blog/${createUrl(item.title)}/?id=${
                 item._id
               }</loc>
                 <lastmod>${formatDate(item.time.split(" ")[0])}</lastmod>
