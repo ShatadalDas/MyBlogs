@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
-import { type OneBlogType } from "./api/getOneBlog";
+import { type OneBlogType } from "../api/getOneBlog";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import rehypeCodeTitles from "rehype-code-titles";
 import remarkGfm from "remark-gfm";
 import { Prism } from "react-syntax-highlighter";
 import { atomDark as theme } from "react-syntax-highlighter/dist/cjs/styles/prism";
-import CopyCode from "../utils/components/CopyCode";
-import { Footer } from "../components";
+import CopyCode from "../../utils/components/CopyCode";
+import { Footer } from "../../components";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Head from "next/head";
-import LoadingBar from "../utils/components/LoadingBar";
+import LoadingBar from "../../utils/components/LoadingBar";
 
 function Blog({
   data,
@@ -25,6 +25,8 @@ function Blog({
         <title>{data.title}</title>
         <meta name="description" content={data.metaDescription} />
       </Head>
+
+      
       <LoadingBar show={loading} />
       <div className="blog--wrapper">
         <button
@@ -103,7 +105,10 @@ function Blog({
 }
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
+
+  //* id has been passed as a query and not a slug
   const { id } = context.query;
+
   const res = await fetch(`${process.env.DOMAIN}/api/getOneBlog?id=${id}`);
   const data = (await res.json()) as OneBlogType;
 

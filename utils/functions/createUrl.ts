@@ -13,7 +13,7 @@ export default function createUrl(title: string): string {
       res += isAlphaNum(ch) ? ch.toLowerCase() : charToHex(ch);
     }
 
-    res += i === words.length - 1 ? "" : "+";
+    res += i === words.length - 1 ? "" : "-";
   }
   return res;
 }
