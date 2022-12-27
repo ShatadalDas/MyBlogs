@@ -22,7 +22,15 @@ textarea {
 }
 
 body {
-  // background: var(--clr-primary-850);
-  background: linear-gradient(45deg, var(--clr-secondary-850), var(--clr-neutral-850));
+  background-image: linear-gradient(
+    45deg,
+    var(--clr-secondary-850),
+    var(--clr-neutral-850)
+  );
   color: var(--clr-primary-100);
+  min-height: 100vh;
+}
+
+button {
+  cursor: pointer;
 }

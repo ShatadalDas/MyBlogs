@@ -32,9 +32,13 @@ function Index(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
 
   return (
     <>
-    <Head>
+      <Head>
         <title>Blogs of Shatadal Das</title>
-    </Head>
+        <meta
+          name="description"          
+          content="Welcome to my blog, where we delve into the exciting world of technology and programming. From informative articles and tutorials to valuable resources, this website is dedicated to keeping you up-to-date on the latest trends and techniques in the tech industry. As a tech and programming enthusiast, I share my insights and experiences to help you learn something new every day. Follow along to stay informed and stay ahead of the curve."
+        />
+      </Head>
 
       <LoadingBar show={loading} />
       <div className="index">

@@ -1,0 +1,129 @@
+@use "../../../styles/modules/mixins" as *;
+
+//screen readers only
+.sr-only {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.login-frm {
+  @include fc {
+    flex-direction: column;
+    gap: 2em;
+  }
+  min-height: 100vh;
+  @include font-small(1);
+
+  .invalidInput {
+    position: absolute;
+    left: -10000px;
+    overflow: hidden;
+  }
+
+  .invalidInput:not(:empty) ~ &__grp {
+    --clr: red;
+    animation: headShake 200ms 2;
+  }
+
+  &__grp {
+    --clr: #fff4;
+    font-family: "Lato", sans-serif;
+    position: relative;
+    width: 60%;
+    max-width: 30rem;
+    border-bottom: 0.02rem solid var(--clr);
+    padding: 0 0.5em;
+
+    &:focus-within {
+      --clr: #fff;
+    }
+
+    input {
+      all: unset;
+      letter-spacing: 0.025em;
+      width: 100%;
+      padding: 0.5em 0;
+      color: var(--clr-primary-100);
+
+      &:focus-visible {
+        outline: 0px solid transparent;
+      }
+
+      &::placeholder {
+        font-weight: 300;
+        opacity: 0.5;
+      }
+      &:focus::placeholder {
+        opacity: 0.8;
+      }
+    }
+
+    .pass-input {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+
+      input {
+        width: 90%;
+      }
+
+      &__btn {
+        @include gc;
+        font-size: 1.2em;
+        background-color: transparent;
+
+        svg {
+          fill: var(--clr);
+        }
+        &:focus-visible svg {
+          outline: 2px solid rgb(255, 255, 255);
+          outline-offset: 0.1em;
+        }
+      }
+    }
+  }
+
+  &__btn {
+    margin-block-start: 1em;
+    button {
+      padding: 0.5em 1.2em;
+      border-radius: 0.2em;
+      font-family: "Ubuntu";
+      background-color: var(--clr-neutral-400);
+      color: var(--clr-primary-100);
+      font-weight: 600;
+
+      &:disabled {
+        filter: brightness(40%);
+        cursor: not-allowed;
+      }
+
+      &:focus-visible {
+        outline: 3px solid var(--clr-neutral-100);
+        outline-offset: 0.1em;
+      }
+    }
+  }
+}
+
+@keyframes headShake {
+  0% {
+    translate: 0 0;
+  }
+  25% {
+    translate: -5% 0;
+  }
+  50% {
+    translate: 0 0;
+  }
+  75% {
+    translate: 5% 0;
+  }
+  100% {
+    translate: 0 0;
+  }
+}

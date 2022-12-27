@@ -10,7 +10,7 @@ function Navbar() {
       </h1>
 
       <ul className="nav__list">
-        <Link href="/">
+        <Link href="/admin/login">
           <li className="nav__item">
             <button className="nav--admin" data-name="Admin">
               <Image src="/shield.svg" alt="admin svg" height={20} width={20} />
