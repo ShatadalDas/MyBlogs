@@ -53,7 +53,7 @@ export default function App({ Component, pageProps }: AppProps) {
           type="image/x-icon"
           href="/favicon_io/favicon.ico"
         />
-        <link rel="manifest" href="/favicon_io/site.manifest" />
+        <link rel="manifest" href="/favicon_io/site.webmanifest" />
       </Head>
 
       <Component {...pageProps} />
