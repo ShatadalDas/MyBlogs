@@ -1,16 +1,20 @@
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 
-function Navbar() {
+type Props = {
+  setLoading: Dispatch<SetStateAction<boolean>>;
+};
+
+function Navbar({ setLoading }: Props) {
   return (
     <nav className="nav">
-      <h1 className="nav__logo">
-        S<span>.</span>D<span>.</span>
+      <h1 className="nav__logo" aria-label="S D logo">
+        <Image src="/logo.svg" height={20} width={20} alt="Logo"/>
       </h1>
 
       <ul className="nav__list">
-        <Link href="/admin/login">
+        <Link href="/admin/login" onClick={() => setLoading(true)}>
           <li className="nav__item">
             <button className="nav--admin" data-name="Admin">
               <Image src="/shield.svg" alt="admin svg" height={20} width={20} />

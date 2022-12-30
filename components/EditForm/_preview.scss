@@ -1,0 +1,6 @@
+@use "../../styles/modules/mixins" as *;
+
+.half {
+    @include font-medium(.5);
+    padding: 1em .5em;
+}

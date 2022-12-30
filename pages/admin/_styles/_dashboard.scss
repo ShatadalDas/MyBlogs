@@ -1,0 +1,17 @@
+@use "../../../styles/modules/mixins" as *;
+
+.dashboard-wrapper
+  > .infinite-scroll-component__outerdiv
+  > .infinite-scroll-component {
+  @include font-medium;
+  min-height: 100vh;
+  max-width: 2400px;
+  margin: 0 auto;
+  display: grid;
+  gap: 1em 0.45em;
+  padding: 1.5em;
+  @media (width > 45em) {
+    grid-template-columns: repeat(auto-fit, minmax(5rem, 10em));
+    justify-content: space-evenly;
+  }
+}

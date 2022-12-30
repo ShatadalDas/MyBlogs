@@ -1,23 +1,19 @@
 @use "../../styles/modules/mixins" as *;
 
 .nav {
-  @include font-medium(1);
+  @include font-medium;
   @include f-ai(0) {
     justify-content: space-between;
   }
-  padding: 0.4em 1.5em;
+  padding: 0.5em 1.5em;
   max-width: 2400px;
   margin: 0 auto;
 
   &__logo {
-    font-family: "Lobster", cursive;
-    color: var(--clr-primary-100);
-
-    :first-child {
-      color: var(--clr-neutral-400);
-    }
-    :last-child {
-      color: var(--clr-secondary-400);
+    @include fc;
+    img {
+      height: 0.8em;
+      width: auto;
     }
   }
 
@@ -30,13 +26,13 @@
     button {
       @include fc;
       @include circle;
-      padding: 0.4em;
+      height: 1.5em;
+      padding-inline: 0.5em;
       cursor: pointer;
       box-shadow: 0 0 0.2em var(--clr-primary-900);
       @include mq("not pointer") {
         border-radius: 0.2em;
         gap: 0.2em;
-        padding: 0.4em 0.6em;
       }
 
       &::after {
@@ -56,7 +52,6 @@
           border-radius: 0.2em;
           gap: 0.2em;
           scale: 1;
-          padding: 0.4em 0.5em;
           &::after {
             font-size: 0.6em;
           }

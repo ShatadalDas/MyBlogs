@@ -42,7 +42,7 @@ function Index(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
 
       <LoadingBar show={loading} />
       <div className="index">
-        <Navbar />
+        <Navbar setLoading={setLoading} />
         <main className="index__blogs">
           <InfiniteScroll
             dataLength={blogs.length}

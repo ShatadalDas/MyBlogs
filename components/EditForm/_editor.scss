@@ -1,0 +1,20 @@
+@use "../../styles/modules/mixins" as *;
+
+.editor {
+  @include font-small;
+  border-right: 0.2rem solid var(--clr-primary-100);
+  background-color: hsl(0, 0%, 5%);
+  padding: 0.5em;
+
+  &__textarea {
+    resize: none;
+    width: 100%;
+    height: 100%;
+    padding: 0.2em 0.5em;
+    background-color: #111;
+    color: var(--clr-primary-100);
+    font-family: "Inconsolata", sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+  }
+}

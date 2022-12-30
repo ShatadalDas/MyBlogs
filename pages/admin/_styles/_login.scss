@@ -108,6 +108,18 @@
       }
     }
   }
+
+  &__guest {
+    font-family: "Ubuntu", sans-serif;
+    font-size: .8em;
+    font-weight: 500;
+    color: var(--clr-secondary-200);
+    
+    &:where(:hover, :focus) {
+      color: var(--clr-secondary-300);
+      text-decoration: underline;
+    }
+  }
 }
 
 @keyframes headShake {

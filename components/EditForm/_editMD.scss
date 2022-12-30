@@ -1,0 +1,11 @@
+@use "../../styles/modules/mixins" as *;
+
+.editmd {
+  display: flex;
+  gap: 0.2rem;
+  height: 100%;
+  
+  & > * {
+    width: 50%;
+  }
+}

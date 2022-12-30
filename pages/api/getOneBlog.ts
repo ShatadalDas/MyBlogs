@@ -7,6 +7,7 @@ export type OneBlogType = {
   title: string;
   content: string;
   metaDescription: string;
+  keywords: string;
   time: string;
 };
 
@@ -25,7 +26,7 @@ export default async function handler(
 
     let blog = await (Blogs as Model<BlogType>)
       .findById<OneBlogType>(id)
-      .select("-_id title content metaDescription time");
+      .select("-_id -createdAt -updatedAt");
 
     if (blog) {
       res.status(200).json(blog);

@@ -2,6 +2,7 @@
 
 import axios from "axios";
 import Head from "next/head";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { IoEye, IoEyeOff } from "react-icons/io5";
@@ -129,6 +130,9 @@ function Login() {
             Login
           </button>
         </div>
+        <Link href="/admin/dashboard">
+          <p className="login-frm__guest">View as a guest</p>
+        </Link>
       </form>
     </>
   );

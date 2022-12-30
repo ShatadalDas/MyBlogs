@@ -1,0 +1,35 @@
+@use "../../styles/modules/mixins" as *;
+
+.title-frm-wrapper {
+  @include font-small;
+  display: grid;
+  grid-template-rows: 1fr 2fr 1fr;
+  row-gap: 1em;
+  padding: 1em;
+
+  textarea {
+    font-size: 1.5em;
+    resize: none;
+    background-color: #fff2;
+    border-radius: 0.3em;
+    padding: 0.5em;
+    color: var(--clr-primary-100);
+    font-family: "Inria Serif", serif;
+    letter-spacing: 0.05em;
+    scrollbar-width: none;
+    ::-webkit-scrollbar {
+      width: none;
+    }
+
+    &:nth-of-type(2) {
+      font-size: 1em;
+      font-family: "Inconsolata", monospace;
+    }
+
+    &:nth-of-type(3) {
+        font-size: 1.2em;
+        font-family: "Ubuntu", sans-serif;
+        word-spacing: 0.3em;
+    }
+  }
+}

@@ -1,0 +1,112 @@
+@use "../../../styles/modules/mixins" as *;
+
+//* using :where() to eliminate the specificity
+:where(.markdown) {
+  @include font-medium;
+  @include fd-c(0.9em);
+  line-height: 1.5;
+  letter-spacing: 0.023em;
+
+  h1 {
+    display: none;
+  }
+
+  li {
+    margin-inline: 2em 0;
+  }
+
+  a {
+    color: var(--clr-neutral-200);
+    margin-inline: 0.2em;
+    font-size: 1.1em;
+    &:where(:hover, :focus-visible) {
+      text-decoration: underline;
+    }
+  }
+
+  p,
+  ul,
+  ol {
+    font-size: 0.7em;
+    font-weight: 500;
+    font-family: "Roboto", sans-serif;
+
+    em {
+      font-size: 0.95em;
+      font-style: italic;
+      font-weight: normal;
+      margin-inline: 0.1em;
+    }
+
+    del {
+      font-size: 0.95em;
+      font-weight: normal;
+      margin-inline: 0.1em;
+    }
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.3em;
+    display: block;
+    margin-block: 0.7em;
+  }
+
+  [class*="code-"] {
+    font-size: 0.8em;
+    position: relative;
+    &:hover > .copy {
+      visibility: visible;
+    }
+
+    pre {
+      scrollbar-width: none;
+      ::-webkit-scrollbar {
+        width: 0;
+      }
+    }
+  }
+
+  blockquote {
+    font-size: 2em;
+    position: relative;
+    margin: 1em 0;
+    margin-inline: 0.8em;
+    padding-inline: 1.2em;
+
+    p {
+      font-style: italic;
+      font-family: "Ubuntu", sans-serif;
+      font-weight: 400;
+    }
+
+    &::before {
+      content: open-quote;
+      position: absolute;
+      top: -0.55em;
+      left: -0.2em;
+      font-size: 3em;
+      font-family: sans-serif;
+      font-weight: 700;
+      opacity: 0.2;
+    }
+
+    &::after {
+      content: close-quote;
+      position: absolute;
+      bottom: -1em;
+      right: -0.2em;
+      font-size: 3em;
+      font-family: sans-serif;
+      font-weight: 700;
+      opacity: 0.2;
+    }
+  }
+
+  .rehype-code-title {
+    translate: 0 0.4em;
+    font-size: 1.1em;
+    font-family: "Lato", sans-serif;
+  }
+}

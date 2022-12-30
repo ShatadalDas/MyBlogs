@@ -4,6 +4,7 @@ export type BlogType = {
   title: string;
   content: string;
   metaDescription: string;
+  keywords: string;
   time: string;
 };
 
@@ -18,6 +19,10 @@ const blogSchema = new Schema<BlogType>(
       required: true,
     },
     metaDescription: {
+      type: String,
+      required: true,
+    },
+    keywords: {
       type: String,
       required: true,
     },

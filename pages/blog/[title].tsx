@@ -1,17 +1,11 @@
 import React, { useState } from "react";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { type OneBlogType } from "../api/getOneBlog";
-import { ReactMarkdown } from "react-markdown/lib/react-markdown";
-import rehypeCodeTitles from "rehype-code-titles";
-import remarkGfm from "remark-gfm";
-import { Prism } from "react-syntax-highlighter";
-import { atomDark as theme } from "react-syntax-highlighter/dist/cjs/styles/prism";
-import CopyCode from "../../utils/components/CopyCode";
 import { Footer } from "../../components";
 import { useRouter } from "next/router";
-import Image from "next/image";
 import Head from "next/head";
 import LoadingBar from "../../utils/components/LoadingBar";
+import RenderMarkDown from "../../utils/components/RenderMarkDown";
 
 function Blog({
   data,
@@ -24,9 +18,9 @@ function Blog({
       <Head>
         <title>{data.title}</title>
         <meta name="description" content={data.metaDescription} />
+        <meta name="keywords" content={data.keywords} />
       </Head>
 
-      
       <LoadingBar show={loading} />
       <div className="blog--wrapper">
         <button
@@ -51,52 +45,10 @@ function Blog({
           <h1 className="blog__title" data-time={data.time}>
             {data.title}
           </h1>
-          <div className="blog__content">
-            <ReactMarkdown
-              remarkPlugins={[remarkGfm]}
-              rehypePlugins={[rehypeCodeTitles]}
-              components={{
-                pre: ({ children }) => {
-                  return (
-                    <pre className="blog__content__code">
-                      <CopyCode>{children}</CopyCode>
-                      {children}
-                    </pre>
-                  );
-                },
-                img: ({ src, alt }) => {
-                  return (
-                    <Image
-                      src={
-                        src
-                          ? src
-                          : "https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found-300x169.jpg"
-                      }
-                      alt={alt ? alt : "An Image"}
-                      height={1000}
-                      width={1000}
-                      loading="lazy"
-                      quality={100}
-                    />
-                  );
-                },
-                code({ node, inline, className, children, ...props }) {
-                  const match = /language-(\w+)/.exec(className || "");
-                  return !inline && match ? (
-                    <Prism language={match[1]} style={theme as any} {...props}>
-                      {String(children).replace(/\n$/, "")}
-                    </Prism>
-                  ) : (
-                    <code className="blog__content__code--inline" {...props}>
-                      {children}
-                    </code>
-                  );
-                },
-              }}
-            >
-              {data.content}
-            </ReactMarkdown>
-          </div>
+          <RenderMarkDown
+            content={data.content}
+            element="main"
+          />
         </article>
       </div>
       <Footer />
@@ -105,7 +57,6 @@ function Blog({
 }
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-
   //* id has been passed as a query and not a slug
   const { id } = context.query;
 
