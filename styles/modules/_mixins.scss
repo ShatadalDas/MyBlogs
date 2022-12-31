@@ -23,7 +23,8 @@
             @media (pointer: "fine") {
               @content;
             }
-          } @else {   //not pointer
+          } @else {
+            //not pointer
             @media not (pointer: "fine") {
               @content;
             }
@@ -86,4 +87,20 @@
 
 @mixin font-large($mult: 1) {
   font-size: calc(clamp(1.6rem, 4vw + 1vh + 0.1rem, 2.5em) * $mult);
+}
+
+@mixin thin-scrollbar {
+  ::-webkit-scrollbar {
+    width: .6vw;
+  }
+
+  ::-webkit-scrollbar-track {
+    @include pill;
+    background-color: #555;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @include pill;
+    background-color: #fff;
+  }
 }
