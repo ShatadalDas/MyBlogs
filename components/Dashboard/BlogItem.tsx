@@ -1,6 +1,7 @@
+import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { HiPencil } from "react-icons/hi2";
 import { MdDelete } from "react-icons/md";
 
@@ -12,6 +13,18 @@ type Props = {
 
 function BlogItem(props: Props) {
   const router = useRouter();
+  const [loggedIn, setLoggedIn] = useState<string | null>(null);
+  useEffect(() => {
+    setLoggedIn(sessionStorage.getItem("login"));
+  }, []);
+
+  function handleDelete() {
+    if (loggedIn === "true") {
+      deleteBlog(props._id);
+    } else {
+      alert("Sorry, but only admin can delete, update or edit a blog!")
+    }
+  }
   return (
     <div className="dashboard-blogItem">
       <div className="dashboard-blogItem__wrapper">
@@ -19,18 +32,30 @@ function BlogItem(props: Props) {
         <p>{props.time}</p>
       </div>
       <div className="dashboard-blogItem__btns">
-        {/* <button onClick={() => router.push(`/admin/edit?id=${props._id}`)}> */}
         <Link href={`/admin/edit?id=${props._id}`}>
           <button>
             <HiPencil />
           </button>
         </Link>
-        <button>
+        <button onClick={handleDelete}>
           <MdDelete />
         </button>
       </div>
     </div>
   );
+}
+
+async function deleteBlog(id: string) {
+  try {
+    const res = await axios.delete(`/api/deleteBlog?id=${id}`);
+
+    if (res.status === 200) {
+      alert("Blog has been deleted, refresh the page to see the changes.");
+    }
+  } catch (e) {
+    alert("Some Error occurred.. :(");
+    console.log(e);
+  }
 }
 
 export default BlogItem;

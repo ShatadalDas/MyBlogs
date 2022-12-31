@@ -7,24 +7,15 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<string>
 ) {
-  if (req.method !== "PUT") {
+  if (req.method !== "DELETE") {
     res.send("Please try with a POST Request");
     return;
   }
 
   dbConn();
-   const { _id, title, content, metaDescription, keywords, time } = req.body;
-   const editedBlog = await(Blogs as Model<BlogType>).updateOne(
-     { _id },
-     {
-       title,
-       content,
-       metaDescription,
-       keywords,
-       time,
-     }
-   );
+  const { id } = req.query;
+  const deleted = await (Blogs as Model<BlogType>).deleteOne({_id: id})
 
-  if (editedBlog) res.status(200).send("Blog Editted Successfully...!");
+  if (deleted) res.status(200).send("Blog Created Successfully...!");
   else res.status(500).send("OOPS, Something Went Wrong...!");
 }
