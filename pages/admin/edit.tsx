@@ -33,8 +33,9 @@ function Edit({
     keywords: data.keywords,
   });
   const { isFirstStep, isLastStep, step, back, next } = useMultiStepForm([
-    <EditMD content={content} setContent={setContent} />,
+    <EditMD key={Math.random()} content={content} setContent={setContent} />,
     <TitleAndMeta
+      key={Math.random()}
       otherFormData={otherFormData}
       setOtherFormData={setOtherFormData}
     />,
@@ -65,7 +66,7 @@ function Edit({
     }
     if (!router.query.id) {
       await createNewBlog(formData, router, setLoading);
-    } else {      
+    } else {
       await editAnExistingBlog(formData, router, setLoading);
     }
   }
@@ -138,7 +139,6 @@ async function createNewBlog(
     console.log(error);
   }
 }
-
 
 async function editAnExistingBlog(
   formData: FormDataType,
