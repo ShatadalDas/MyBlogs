@@ -1,15 +1,17 @@
 import React, { useEffect, useReducer, useState } from "react";
 import Navbar from "../../components/EditForm/Navbar";
-import useMultiStepForm from "../../utils/hooks/useMultiStepForm";
 import EditMD from "../../components/EditForm/EditMD";
 import TitleAndMeta from "../../components/EditForm/TitleAndMeta";
 import { useRouter } from "next/router";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { OneBlogType } from "../api/getOneBlog";
-import LoadingBar from "../../utils/components/LoadingBar";
-import createNewBlog from "../../utils/functions/createNewBlog";
-import editAnExistingBlog from "../../utils/functions/editAnExistingBlog";
-import generateUniqueKey from "../../utils/functions/generateUniqueKey";
+import { useMultiStepForm } from "../../utils/hooks";
+import { LoadingBar } from "../../utils/components";
+import {
+  createNewBlog,
+  editAnExistingBlog,
+  generateUniqueKey,
+} from "../../utils/functions";
 
 export type BlogDataType = {
   content: string;

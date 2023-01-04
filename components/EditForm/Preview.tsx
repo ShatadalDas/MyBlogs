@@ -1,5 +1,5 @@
 import React from "react";
-import RenderMarkDown from "../../utils/components/RenderMarkDown";
+import { RenderMarkDown } from "../../utils/components";
 
 type Props = {
   content: string;

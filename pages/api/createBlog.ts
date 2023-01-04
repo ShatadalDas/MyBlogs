@@ -1,8 +1,7 @@
 import { Model } from "mongoose";
 import type { NextApiRequest, NextApiResponse } from "next";
 import Blogs, { BlogType } from "../../models/Blogs";
-import dbConn from "../../utils/functions/dbConn";
-
+import { dbConn } from "../../utils/functions";
 
 export default async function handler(
   req: NextApiRequest,

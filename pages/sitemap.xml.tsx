@@ -1,6 +1,6 @@
 import { GetServerSideProps } from "next";
 import { BlogsTitlesType } from "./api/blogTitles";
-import createUrl from "../utils/functions/createUrl";
+import {createUrl} from "../utils/functions";
 
 function Sitemap() {
   return null;

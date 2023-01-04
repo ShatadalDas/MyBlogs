@@ -1,7 +1,7 @@
 import { Model } from "mongoose";
 import type { NextApiRequest, NextApiResponse } from "next";
 import Blogs, { BlogType } from "../../models/Blogs";
-import dbConn from "../../utils/functions/dbConn";
+import { dbConn } from "../../utils/functions";
 
 export default async function handler(
   req: NextApiRequest,
@@ -14,7 +14,7 @@ export default async function handler(
 
   dbConn();
   const { id } = req.query;
-  const deleted = await (Blogs as Model<BlogType>).deleteOne({_id: id})
+  const deleted = await (Blogs as Model<BlogType>).deleteOne({ _id: id });
 
   if (deleted) res.status(200).send("Blog Created Successfully...!");
   else res.status(500).send("OOPS, Something Went Wrong...!");

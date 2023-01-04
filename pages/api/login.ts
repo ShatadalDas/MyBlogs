@@ -1,7 +1,7 @@
 import { Model } from "mongoose";
 import { NextApiRequest, NextApiResponse } from "next";
 import Admin, { AdminType } from "../../models/Admin";
-import dbConn from "../../utils/functions/dbConn";
+import {dbConn} from "../../utils/functions";
 
 export default async function handler(
   req: NextApiRequest,

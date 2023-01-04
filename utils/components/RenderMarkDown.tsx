@@ -5,7 +5,7 @@ import remarkGfm from "remark-gfm";
 import { Prism } from "react-syntax-highlighter";
 import { atomDark as theme } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import Image from "next/image";
-import CopyCode from "../../utils/components/CopyCode";
+import { CopyCode } from "../../utils/components";
 
 type Props = {
   content: string;

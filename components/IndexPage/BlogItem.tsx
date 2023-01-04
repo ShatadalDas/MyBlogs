@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React, { Dispatch, SetStateAction } from "react";
-import createUrl from "../../utils/functions/createUrl";
+import { createUrl } from "../../utils/functions";
 
 type Props = {
   title: string;

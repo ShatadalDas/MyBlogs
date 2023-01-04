@@ -5,7 +5,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { BlogItemLoading, Footer } from "../../components";
 import BlogItem from "../../components/Dashboard/BlogItem";
 import Header from "../../components/Dashboard/Header";
-import clamp from "../../utils/functions/clamp";
+import {clamp} from "../../utils/functions";
 import { AllBlogsType } from "../api/getAllBlogs";
 
 

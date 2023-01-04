@@ -1,7 +1,7 @@
 import { Model } from "mongoose";
 import type { NextApiRequest, NextApiResponse } from "next";
 import Blogs, { BlogType } from "../../models/Blogs";
-import dbConn from "../../utils/functions/dbConn";
+import { dbConn } from "../../utils/functions";
 
 export default async function handler(
   req: NextApiRequest,
@@ -13,17 +13,17 @@ export default async function handler(
   }
 
   dbConn();
-   const { _id, title, content, metaDescription, keywords, time } = req.body;
-   const editedBlog = await(Blogs as Model<BlogType>).updateOne(
-     { _id },
-     {
-       title,
-       content,
-       metaDescription,
-       keywords,
-       time,
-     }
-   );
+  const { _id, title, content, metaDescription, keywords, time } = req.body;
+  const editedBlog = await (Blogs as Model<BlogType>).updateOne(
+    { _id },
+    {
+      title,
+      content,
+      metaDescription,
+      keywords,
+      time,
+    }
+  );
 
   if (editedBlog) res.status(200).send("Blog Editted Successfully...!");
   else res.status(500).send("OOPS, Something Went Wrong...!");

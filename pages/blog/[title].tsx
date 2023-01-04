@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { type OneBlogType } from "../api/getOneBlog";
-import { Footer } from "../../components";
+import { Footer } from "../../utils/components";
 import { useRouter } from "next/router";
 import Head from "next/head";
-import LoadingBar from "../../utils/components/LoadingBar";
-import RenderMarkDown from "../../utils/components/RenderMarkDown";
+import { LoadingBar, RenderMarkDown } from "../../utils/components";
 
 function Blog({
   data,
@@ -45,10 +44,7 @@ function Blog({
           <h1 className="blog__title" data-time={data.time}>
             {data.title}
           </h1>
-          <RenderMarkDown
-            content={data.content}
-            element="main"
-          />
+          <RenderMarkDown content={data.content} element="main" />
         </article>
       </div>
       <Footer />
