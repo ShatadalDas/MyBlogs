@@ -4,16 +4,16 @@ import Editor from "./Editor";
 import Preview from "./Preview";
 
 type Props = {
-  state: BlogDataType;
+  content: string;
   dispatch: Dispatch<ActionType<Partial<BlogDataType>>>;
 };
 
-function EditMD({ state, dispatch }: Props) {
+function EditMD({ content, dispatch }: Props) {
   return (
     <>
       <div className="editmd">
-        <Editor content={state.content} dispatch={dispatch} />
-        <Preview content={state.content} />
+        <Editor content={content} dispatch={dispatch} />
+        <Preview content={content} />
       </div>
     </>
   );

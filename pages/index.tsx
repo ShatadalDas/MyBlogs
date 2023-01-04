@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { BlogItem, Footer, Navbar, BlogItemLoading } from "../components";
+import { BlogItem, Navbar, BlogItemLoading } from "../components";
 import { AllBlogsType } from "./api/getAllBlogs";
-import { clamp } from "../utils/functions";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { InferGetServerSidePropsType } from "next";
-import { LoadingBar } from "../utils/components";
 import Head from "next/head";
+import { clamp } from "../utils/functions";
+import { LoadingBar, Footer } from "../utils/components";
 
 let start = 0;
 let end = 0;

@@ -40,6 +40,7 @@ function reducer(
 function Edit({
   data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  //* Initial values coming from getServerSideProps
   const initialState = {
     content: data.content,
     title: data.title,
@@ -47,15 +48,13 @@ function Edit({
     keywords: data.keywords,
   };
 
+  //* Responsible of maitaining all the blog data
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  //* Multistep form to take the MD and meta info seperately
   const { isFirstStep, isLastStep, step, back, next } = useMultiStepForm([
-    <EditMD key={generateUniqueKey()} state={state} dispatch={dispatch} />,
-    <TitleAndMeta
-      key={generateUniqueKey()}
-      state={state}
-      dispatch={dispatch}
-    />,
+    <EditMD content={state.content} dispatch={dispatch} />,
+    <TitleAndMeta state={state} dispatch={dispatch} />,
   ]);
 
   const [loggedIn, setLoggedIn] = useState<string | null>(null);
@@ -82,10 +81,10 @@ function Edit({
       );
     }
     if (!router.query.id) {
-      await createNewBlog(state, router, setLoading);
-    } else {
       await editAnExistingBlog(state, router, setLoading);
+      return;
     }
+    await createNewBlog(state, router, setLoading);
   }
 
   return (
