@@ -53,8 +53,8 @@ function Edit({
 
   //* Multistep form to take the MD and meta info seperately
   const { isFirstStep, isLastStep, step, back, next } = useMultiStepForm([
-    <EditMD content={state.content} dispatch={dispatch} />,
-    <TitleAndMeta state={state} dispatch={dispatch} />,
+    <EditMD key={0} content={state.content} dispatch={dispatch} />,
+    <TitleAndMeta key={1} state={state} dispatch={dispatch} />,
   ]);
 
   const [loggedIn, setLoggedIn] = useState<string | null>(null);

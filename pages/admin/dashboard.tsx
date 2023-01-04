@@ -2,9 +2,10 @@ import { InferGetServerSidePropsType } from "next";
 import Head from "next/head";
 import React, { useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { BlogItemLoading, Footer } from "../../components";
+import { BlogItemLoading } from "../../components";
 import BlogItem from "../../components/Dashboard/BlogItem";
 import Header from "../../components/Dashboard/Header";
+import { Footer } from "../../utils/components";
 import {clamp} from "../../utils/functions";
 import { AllBlogsType } from "../api/getAllBlogs";
 
