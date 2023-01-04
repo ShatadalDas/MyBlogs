@@ -1,45 +1,61 @@
-import React, {
-  Dispatch,
-  FormEvent,
-  SetStateAction,
-  useEffect,
-  useState,
-} from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import Navbar from "../../components/EditForm/Navbar";
 import useMultiStepForm from "../../utils/hooks/useMultiStepForm";
 import EditMD from "../../components/EditForm/EditMD";
 import TitleAndMeta from "../../components/EditForm/TitleAndMeta";
-import axios from "axios";
-import { NextRouter, useRouter } from "next/router";
-import generateTime from "../../utils/functions/generateTime";
+import { useRouter } from "next/router";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { OneBlogType } from "../api/getOneBlog";
 import LoadingBar from "../../utils/components/LoadingBar";
+import createNewBlog from "../../utils/functions/createNewBlog";
+import editAnExistingBlog from "../../utils/functions/editAnExistingBlog";
+import generateUniqueKey from "../../utils/functions/generateUniqueKey";
 
-type FormDataType = {
+export type BlogDataType = {
   content: string;
   title: string;
   metaDes: string;
   keywords: string;
 };
 
+export type ActionType<T> = {
+  type: "update";
+  payload?: T;
+};
+
+function reducer(
+  state: BlogDataType,
+  action: ActionType<Partial<BlogDataType>>
+) {
+  switch (action.type) {
+    case "update":
+      return { ...state, ...action.payload };
+    default:
+      return state;
+  }
+}
+
 function Edit({
   data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  const [content, setContent] = useState(data.content);
-  const [otherFormData, setOtherFormData] = useState({
+  const initialState = {
+    content: data.content,
     title: data.title,
     metaDes: data.metaDescription,
     keywords: data.keywords,
-  });
+  };
+
+  const [state, dispatch] = useReducer(reducer, initialState);
+
   const { isFirstStep, isLastStep, step, back, next } = useMultiStepForm([
-    <EditMD key={Math.random()} content={content} setContent={setContent} />,
+    <EditMD key={generateUniqueKey()} state={state} dispatch={dispatch} />,
     <TitleAndMeta
-      key={Math.random()}
-      otherFormData={otherFormData}
-      setOtherFormData={setOtherFormData}
+      key={generateUniqueKey()}
+      state={state}
+      dispatch={dispatch}
     />,
   ]);
+
   const [loggedIn, setLoggedIn] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -50,8 +66,7 @@ function Edit({
 
   async function finish() {
     setLoading(true);
-    const formData: FormDataType = { content, ...otherFormData };
-    const isEmpty = Object.values(formData).some((val) => !val);
+    const isEmpty = Object.values(state).some((val) => !val);
 
     if (isEmpty) {
       setLoading(false);
@@ -65,9 +80,9 @@ function Edit({
       );
     }
     if (!router.query.id) {
-      await createNewBlog(formData, router, setLoading);
+      await createNewBlog(state, router, setLoading);
     } else {
-      await editAnExistingBlog(formData, router, setLoading);
+      await editAnExistingBlog(state, router, setLoading);
     }
   }
 
@@ -112,59 +127,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       data,
     },
   };
-}
-
-async function createNewBlog(
-  formData: FormDataType,
-  router: NextRouter,
-  setLoading: Dispatch<SetStateAction<boolean>>
-) {
-  try {
-    const res = await axios.post("/api/createBlog", {
-      title: formData.title,
-      content: formData.content,
-      metaDescription: formData.metaDes,
-      keywords: formData.keywords,
-      time: generateTime(),
-    });
-    if (res.status === 200) {
-      router.push("/admin/dashboard");
-      setTimeout(() => {
-        alert("Blog created successfully!");
-      }, 500);
-    }
-  } catch (error) {
-    setLoading(false);
-    alert("Some Error occurred.. :(");
-    console.log(error);
-  }
-}
-
-async function editAnExistingBlog(
-  formData: FormDataType,
-  router: NextRouter,
-  setLoading: Dispatch<SetStateAction<boolean>>
-) {
-  try {
-    const res = await axios.put("/api/editBlog", {
-      _id: router.query.id,
-      title: formData.title,
-      content: formData.content,
-      metaDescription: formData.metaDes,
-      keywords: formData.keywords,
-      time: generateTime(),
-    });
-    if (res.status === 200) {
-      router.push("/admin/dashboard");
-      setTimeout(() => {
-        alert("Blog created successfully!");
-      }, 500);
-    }
-  } catch (error) {
-    setLoading(false);
-    alert("Some Error occurred.. :(");
-    console.log(error);
-  }
 }
 
 export default Edit;

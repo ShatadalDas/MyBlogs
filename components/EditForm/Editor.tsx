@@ -1,10 +1,12 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React, { Dispatch } from "react";
+import { ActionType, BlogDataType } from "../../pages/admin/edit";
+
 type Props = {
   content: string;
-  setContent: Dispatch<SetStateAction<string>>;
+  dispatch: Dispatch<ActionType<Partial<BlogDataType>>>;
 };
 
-function Editor({ content, setContent }: Props) {
+function Editor({ content, dispatch }: Props) {
   return (
     <div className="editor">
       <label htmlFor="blgCnt" className="sr-only">
@@ -14,7 +16,9 @@ function Editor({ content, setContent }: Props) {
         className="editor__textarea"
         id="blgCnt"
         placeholder="write the content in markdown language"
-        onChange={(e) => setContent(e.target.value)}
+        onChange={(e) =>
+          dispatch({ type: "update", payload: { content: e.target.value } })
+        }
         value={content}
         spellCheck={false}
       />

@@ -8,8 +8,8 @@ type Props = {
 function Preview({ content }: Props) {
   return (
     <div className="preview">
-      <RenderMarkDown content={content} className="half"/>
-    </div>    
+      <RenderMarkDown content={content} className="half" />
+    </div>
   );
 }
 

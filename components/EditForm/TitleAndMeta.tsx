@@ -1,22 +1,17 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React, { Dispatch } from "react";
+import { ActionType, BlogDataType } from "../../pages/admin/edit";
 
 type Props = {
-  otherFormData: {
-    title: string;
-    metaDes: string;
-    keywords: string;
-  };
-
-  setOtherFormData: Dispatch<
-    SetStateAction<{
-      title: string;
-      metaDes: string;
-      keywords: string;
-    }>
-  >;
+  state: BlogDataType;
+  dispatch: Dispatch<ActionType<Partial<BlogDataType>>>;
 };
 
-function TitleAndMeta({ otherFormData, setOtherFormData }: Props) {
+function TitleAndMeta({ state, dispatch }: Props) {
+
+  function updateBlogData(data: Partial<BlogDataType>) {
+    dispatch({ type: "update", payload: { ...data } });
+  }
+
   return (
     <main className="title-frm-wrapper">
       <label className="sr-only" htmlFor="title">
@@ -24,10 +19,8 @@ function TitleAndMeta({ otherFormData, setOtherFormData }: Props) {
       </label>
       <textarea
         id="title"
-        onChange={(e) =>
-          setOtherFormData((val) => ({ ...val, title: e.target.value }))
-        }
-        value={otherFormData.title}
+        onChange={(e) => updateBlogData({ title: e.target.value })}
+        value={state.title}
         placeholder="enter the title here"
       />
 
@@ -36,10 +29,8 @@ function TitleAndMeta({ otherFormData, setOtherFormData }: Props) {
       </label>
       <textarea
         id="meta"
-        onChange={(e) =>
-          setOtherFormData((val) => ({ ...val, metaDes: e.target.value }))
-        }
-        value={otherFormData.metaDes}
+        onChange={(e) => updateBlogData({ metaDes: e.target.value })}
+        value={state.metaDes}
         placeholder="enter the meta description here (between 50 to 160 ch)"
       />
 
@@ -48,10 +39,8 @@ function TitleAndMeta({ otherFormData, setOtherFormData }: Props) {
       </label>
       <textarea
         id="keywords"
-        onChange={(e) =>
-          setOtherFormData((val) => ({ ...val, keywords: e.target.value }))
-        }
-        value={otherFormData.keywords}
+        onChange={(e) => updateBlogData({ keywords: e.target.value })}
+        value={state.keywords}
         placeholder="enter the keywords here"
       />
     </main>

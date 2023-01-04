@@ -1,18 +1,19 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React, { Dispatch } from "react";
+import { ActionType, BlogDataType } from "../../pages/admin/edit";
 import Editor from "./Editor";
 import Preview from "./Preview";
 
 type Props = {
-  content: string;
-  setContent: Dispatch<SetStateAction<string>>;
+  state: BlogDataType;
+  dispatch: Dispatch<ActionType<Partial<BlogDataType>>>;
 };
 
-function EditMD({ content, setContent }: Props) {
+function EditMD({ state, dispatch }: Props) {
   return (
     <>
       <div className="editmd">
-        <Editor content={content} setContent={setContent} />
-        <Preview content={content} />
+        <Editor content={state.content} dispatch={dispatch} />
+        <Preview content={state.content} />
       </div>
     </>
   );
