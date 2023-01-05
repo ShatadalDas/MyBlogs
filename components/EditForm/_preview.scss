@@ -3,4 +3,6 @@
 .half {
     @include font-medium(.5);
     padding: 1em .5em;
+    height: 100%;
+    overflow: hidden scroll;
 }

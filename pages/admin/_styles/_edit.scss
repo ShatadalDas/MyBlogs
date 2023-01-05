@@ -2,7 +2,8 @@
 
 .edit-wrapper {
   @include fd-c;
-  min-height: 100vh;
+  height: 99vh;
+  overflow: hidden;
   & > * {
     width: 100%;
     &:last-child {
