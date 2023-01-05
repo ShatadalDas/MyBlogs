@@ -1,7 +1,6 @@
 export default function generateTime(): string {
   const dateObj = new Date();
 
-  // 27-12-2022 18:19 (GMT +5:30)
   const date = dateObj.getDate();
   const month = dateObj.getMonth() + 1;
   const year = dateObj.getFullYear();
@@ -9,5 +8,11 @@ export default function generateTime(): string {
   const hh = dateObj.getHours();
   const mm = dateObj.getMinutes();
 
-  return `${date}-${month}-${year} ${hh}:${mm} (GMT +05:30)`;
+  return `${putZero(date)}-${putZero(month)}-${year} ${putZero(hh)}:${putZero(
+    mm
+  )} (GMT +05:30)`;
+}
+
+function putZero(val: number) {
+  return (val < 10 ? "0" + val : val).toString;
 }
