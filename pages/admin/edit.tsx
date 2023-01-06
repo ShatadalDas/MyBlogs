@@ -80,7 +80,8 @@ function Edit({
         "Sorry, but only admin can create, edit or delete a blog..!"
       );
     }
-    if (!router.query.id) {
+    console.log(router.query.id)
+    if (router.query.id) {
       await editAnExistingBlog(state, router, setLoading);
       return;
     }

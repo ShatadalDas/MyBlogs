@@ -9,6 +9,7 @@ export default async function createNewBlog(
   router: NextRouter,
   setLoading: Dispatch<SetStateAction<boolean>>
 ) {
+  console.log(generateTime());
   try {
     const res = await axios.post("/api/createBlog", {
       title: formData.title,
@@ -17,6 +18,7 @@ export default async function createNewBlog(
       keywords: formData.keywords,
       time: generateTime(),
     });
+    console.log(res);
     if (res.status === 200) {
       router.push("/admin/dashboard");
       setTimeout(() => {

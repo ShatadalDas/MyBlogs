@@ -12,5 +12,5 @@ export default function generateTime(): string {
 }
 
 function putZero(val: number) {
-  return (val < 10 ? "0" + val : val).toString;
+  return (val < 10 ? "0" + val : val).toString();
 }
