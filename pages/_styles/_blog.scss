@@ -2,15 +2,15 @@
 
 .blog {
   @include font-medium;
-  @include fd-c(3em);
+  @include fd-c(0em);
   min-height: 100vh;
 
   &__title {
-    font-size: 2em;
+    font-size: 2.2em;
     position: relative;
-    font-family: "Inria Serif", serif;
-    font-style: italic;
-    font-weight: bold;
+    font-family: "Work Sans";
+    font-weight: 600;
+    margin-block-end: 1em;
 
     &::after {
       content: attr(data-time);

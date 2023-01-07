@@ -1,6 +1,7 @@
 @use "../../../styles/modules/mixins" as *;
 
 .copy {
+  font-size: 1em;
   @include gc;
   position: absolute;
   top: 1em;
@@ -9,9 +10,7 @@
   aspect-ratio: 1;
   background-color: var(--clr-primary-900);
   border-radius: 50%;
-  font-size: 1.2em;
   cursor: pointer;
-
   
   &__icon {
     fill: var(--clr-primary-100);

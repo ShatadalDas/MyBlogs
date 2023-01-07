@@ -1,8 +1,8 @@
 @use "../../styles/modules/mixins" as *;
 
 .half {
-    @include font-medium(.5);
-    padding: 1em .5em;
+    @include font-medium(.7);
+    padding: 0em .5em 1em;
     height: 100%;
-    overflow: hidden scroll;
+    overflow: hidden auto;
 }

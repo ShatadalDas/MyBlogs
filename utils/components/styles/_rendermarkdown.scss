@@ -1,9 +1,17 @@
 @use "../../../styles/modules/mixins" as *;
 
+@function headings($from: 1, $to: 6) {
+  @if $from == $to {
+    @return "h#{$from}";
+  } @else {
+    @return "h#{$from}," + headings($from + 1, $to);
+  }
+}
+
 //* using :where() to eliminate the specificity
 :where(.markdown) {
   @include font-medium;
-  @include fd-c(0.9em);
+  @include fd-c(0em);
   line-height: 1.5;
   letter-spacing: 0.023em;
 
@@ -11,9 +19,16 @@
     display: none;
   }
 
+  #{headings(2, 6)} {
+    font-family: "Consolas", monospace;
+    margin-block-start: 1em;
+    word-spacing: -0.25em;
+    font-weight: bold;
+  }
+
   li {
     margin-inline: 2em 0;
-    margin-block: .5em;
+    margin-block: 0.5em;
   }
 
   a {
@@ -28,8 +43,9 @@
   p,
   ul,
   ol {
+    margin-block-start: 0.7em;
     font-size: 0.7em;
-    font-weight: 500;
+    // font-weight: 500;
     font-family: "Roboto", sans-serif;
 
     em {
@@ -44,19 +60,26 @@
       font-weight: normal;
       margin-inline: 0.1em;
     }
+
+    strong {
+      font-weight: 600;
+    }
   }
 
   img {
-    width: 100%;
-    height: auto;
+    height: 20em;
+    width: auto;
+    max-width: 100%;
     border-radius: 0.3em;
     display: block;
-    margin-block: 0.7em;
+    margin-block: 0.8em;
+    margin-inline: auto;
   }
 
   [class*="code-"] {
-    font-size: 0.8em;
+    font-size: 0.6em;
     position: relative;
+    margin-block-start: .5em;
     &:hover > .copy {
       visibility: visible;
     }
@@ -72,7 +95,10 @@
   .code-inline {
     font-size: 1em;
     margin-inline: 0.2em;
-    background-color: #222;
+    padding: 0.05em 0.2em;
+    background-color: hsl(0, 0%, 30%);
+    border-radius: 0.5em;
+    white-space: nowrap;
   }
 
   blockquote {
@@ -81,7 +107,7 @@
     position: relative;
     margin: 1em 0;
     margin-inline: 0.8em;
-    padding: .7em 1.2em;
+    padding: 0.7em 1.2em;
 
     p {
       font-style: italic;

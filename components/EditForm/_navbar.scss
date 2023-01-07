@@ -5,9 +5,10 @@
   @include f-ai(0em) {
     justify-content: space-between;
   }
-  padding: 0.6em 1em;
+  padding-inline: 1em;
   max-width: 2400px;
   margin: 0 auto;
+  height: 3em;
 
   &__logo {
     @include f-ai(0em);

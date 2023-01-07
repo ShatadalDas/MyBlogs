@@ -36,3 +36,8 @@ body {
 button {
   cursor: pointer;
 }
+
+::selection {
+  background-color: var(--clr-primary-300);
+  color: var(--clr-primary-100);
+}

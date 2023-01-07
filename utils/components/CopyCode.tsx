@@ -20,7 +20,7 @@ function CopyCode({ children }: PropsWithChildren<any>) {
         {done ? (
           <>
             <span>Copied!</span>
-            <MdDoneAll className="copy--done" />
+            <MdDoneAll className="copy_icon copy--done" />
           </>
         ) : (
           <MdOutlineContentCopy className="copy_icon" />
