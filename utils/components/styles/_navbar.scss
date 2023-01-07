@@ -1,0 +1,106 @@
+@use "../../../styles/modules/mixins" as *;
+
+.navbar {
+  @include font-medium;
+  @include f-ai(0em) {
+    justify-content: space-between;
+  }
+  padding: 0.5em 1em;
+
+  &__logo {
+    height: 1.3em;
+    width: auto;
+    cursor: pointer;
+  }
+
+  &__list {
+    list-style: none;
+    display: flex;
+    gap: 1em;
+  }
+
+  &__items {
+    button {
+      @include f-ai(0em);
+      padding: 0.45em;
+      border-radius: 50%;
+
+      svg {
+        font-size: 0.7em;
+        fill: var(--clr-primary-100);
+      }
+
+      &:disabled {
+        filter: brightness(90%);
+      }
+
+      @include mq("not pointer") {
+        gap: 0.2em;
+        border-radius: 0.2em;
+      }
+
+      &::after {
+        content: attr(data-name);
+        transform-origin: left;
+        font-size: 0.57em;
+        font-family: "Lato";
+        font-weight: 600;
+        color: var(--clr-primary-100);
+        @include mq("pointer") {
+          font-size: 0;
+          transition: scale 200ms, font-size 200ms;
+        }
+      }
+
+      @include mq("pointer") {
+        &:where(:hover, :focus-visible) {
+          border-radius: 0.2em;
+          gap: 0.2em;
+          &::after {
+            font-size: 0.57em;
+          }
+        }
+      }
+    }
+  }
+
+  &--admin,
+  &--code {
+    img {
+      $size: 0.7em;
+      height: $size;
+      width: $size;
+    }
+  }
+
+  &--admin {
+    background-color: var(--clr-neutral-500);
+  }
+
+  &--code {
+    background-color: var(--clr-secondary-400);
+  }
+
+  &--write {
+    background-color: var(--clr-neutral-400);
+  }
+
+  &--next,
+  &--back,
+  &--done {
+    &:is(:hover, :focus-visible) {
+      border-radius: 50%;
+      gap: 0;
+    }
+  }
+
+  &--back {
+    background-color: var(--clr-primary-400);
+  }
+  &--next {
+    background-color: var(--clr-neutral-400);
+  }
+  &--done {
+    background-color: var(--clr-secondary-400);
+  }
+}

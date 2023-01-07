@@ -1,16 +1,14 @@
 import React, { useEffect, useReducer, useState } from "react";
-import Navbar from "../../components/EditForm/Navbar";
 import EditMD from "../../components/EditForm/EditMD";
 import TitleAndMeta from "../../components/EditForm/TitleAndMeta";
 import { useRouter } from "next/router";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { OneBlogType } from "../api/getOneBlog";
 import { useMultiStepForm } from "../../utils/hooks";
-import { LoadingBar } from "../../utils/components";
+import { Navbar } from "../../utils/components";
 import {
   createNewBlog,
   editAnExistingBlog,
-  generateUniqueKey,
 } from "../../utils/functions";
 
 export type BlogDataType = {
@@ -90,14 +88,15 @@ function Edit({
 
   return (
     <>
-      <LoadingBar show={loading} />
       <form className="edit-wrapper" onSubmit={(e) => e.preventDefault()}>
         <Navbar
+          type="form"
           isFirstStep={isFirstStep}
           isLastStep={isLastStep}
           back={back}
           next={next}
           finish={finish}
+          loading={loading}
         />
         {step}
       </form>

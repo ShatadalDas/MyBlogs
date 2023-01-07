@@ -4,16 +4,16 @@ import React, { useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { BlogItemLoading } from "../../components";
 import BlogItem from "../../components/Dashboard/BlogItem";
-import Header from "../../components/Dashboard/Header";
-import { Footer } from "../../utils/components";
-import {clamp} from "../../utils/functions";
+import { Navbar, Footer } from "../../utils/components";
+import { clamp } from "../../utils/functions";
 import { AllBlogsType } from "../api/getAllBlogs";
-
 
 let start = 0;
 let end = 0;
 
-function Dashboard(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
+function Dashboard(
+  props: InferGetServerSidePropsType<typeof getServerSideProps>
+) {
   const totalBlogs = props.totalBlogs;
   const [blogs, setBlogs] = useState<AllBlogsType[]>(props.blogs);
   const [loading, setLoading] = useState(false);
@@ -38,7 +38,7 @@ function Dashboard(props: InferGetServerSidePropsType<typeof getServerSideProps>
       <Head>
         <title>Admin Dashboard</title>
       </Head>
-      <Header />
+      <Navbar type="dashboard" />
       <main className="dashboard-wrapper">
         <InfiniteScroll
           dataLength={blogs.length}

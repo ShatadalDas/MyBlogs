@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { BlogItem, Navbar, BlogItemLoading } from "../components";
+import { BlogItem, BlogItemLoading } from "../components";
 import { AllBlogsType } from "./api/getAllBlogs";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { InferGetServerSidePropsType } from "next";
 import Head from "next/head";
 import { clamp } from "../utils/functions";
-import { LoadingBar, Footer } from "../utils/components";
+import { Navbar, Footer } from "../utils/components";
 
 let start = 0;
 let end = 0;
@@ -40,9 +40,8 @@ function Index(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
         />
       </Head>
 
-      <LoadingBar show={loading} />
       <div className="index">
-        <Navbar setLoading={setLoading} />
+        <Navbar type="index" setLoading={setLoading} loading={loading} />
         <main className="index__blogs">
           <InfiniteScroll
             dataLength={blogs.length}

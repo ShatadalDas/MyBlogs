@@ -1,11 +1,8 @@
-@use "./IndexPage/navbar" as *;
 @use "./IndexPage/blogItem" as *;
 
 @use "./Dashboard/blogitem" as *;
-@use "./Dashboard/header" as *;
 
 @use "./EditForm/editMD" as *;
 @use "./EditForm/titleAndMeta" as *;
-@use "./EditForm/navbar" as *;
 @use "./EditForm/editor" as *;
 @use "./EditForm/preview" as *;
