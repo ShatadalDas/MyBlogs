@@ -4,7 +4,7 @@
   @include fd-c;
   height: 99vh;
   overflow: hidden;
-  align-items: start;
+  align-items: flex-start;
   
   & > * {
     width: 100%;

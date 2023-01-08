@@ -92,6 +92,7 @@
 @mixin thin-scrollbar {
   ::-webkit-scrollbar {
     width: .6vw;
+    height: .6vw;
   }
 
   ::-webkit-scrollbar-track {
@@ -101,6 +102,6 @@
   
   ::-webkit-scrollbar-thumb {
     @include pill;
-    background-color: #fff;
+    background-color: var(--clr-primary-100);
   }
 }

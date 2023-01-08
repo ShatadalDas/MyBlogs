@@ -146,7 +146,8 @@ function RenderButtons({
           ) : (
             <li className="navbar__items">
               <button className="navbar--next" onClick={next}>
-                <MdNavigateNext />
+                <IoIosArrowBack />
+                {/* <MdNavigateNext /> */}
               </button>
             </li>
           )}

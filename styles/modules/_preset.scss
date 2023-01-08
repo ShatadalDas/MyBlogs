@@ -41,3 +41,5 @@ button {
   background-color: var(--clr-primary-300);
   color: var(--clr-primary-100);
 }
+
+@include thin-scrollbar;

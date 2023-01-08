@@ -31,7 +31,8 @@
       }
 
       &:disabled {
-        filter: brightness(90%);
+        filter: brightness(60%);
+        cursor: not-allowed;
       }
 
       @include mq("not pointer") {
@@ -99,6 +100,9 @@
   }
   &--next {
     background-color: var(--clr-neutral-400);
+    svg {
+      rotate: 180deg;
+    }
   }
   &--done {
     background-color: var(--clr-secondary-400);

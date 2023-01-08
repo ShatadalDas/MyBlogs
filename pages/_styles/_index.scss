@@ -2,6 +2,7 @@
 
 .index {
   @include font-medium;
+  @include thin-scrollbar;
   min-height: 100vh;
 
   &__blogs > .infinite-scroll-component__outerdiv > .infinite-scroll-component {
