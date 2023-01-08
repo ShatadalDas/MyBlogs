@@ -4,11 +4,11 @@ import React, { Dispatch, SetStateAction, useEffect } from "react";
 import { HiPencil } from "react-icons/hi2";
 import { IoIosArrowBack } from "react-icons/io";
 import LoadingBar from "./LoadingBar";
-import { MdDone, MdNavigateNext } from "react-icons/md";
+import { MdDone } from "react-icons/md";
 import { useRouter } from "next/router";
 
 type Props = {
-  type: "index" | "dashboard" | "form";
+  type: "index" | "dashboard" | "form" | "login";
   loading?: boolean;
   setLoading?: Dispatch<SetStateAction<boolean>>;
   next?: () => void;
@@ -71,6 +71,7 @@ function RenderButtons({
   isFirstStep,
   isLastStep,
 }: Props) {
+  const router = useRouter();
   switch (type) {
     case "index":
       if (setLoading)
@@ -151,6 +152,17 @@ function RenderButtons({
               </button>
             </li>
           )}
+        </>
+      );
+    case "login":
+      return (
+        <>
+          <li
+            className="navbar__items"
+            onClick={() => router.push("/admin/dashboard")}
+          >
+            <button className="navbar--skip">Skip</button>
+          </li>
         </>
       );
   }

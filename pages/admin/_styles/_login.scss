@@ -1,22 +1,12 @@
 @use "../../../styles/modules/mixins" as *;
 
-//screen readers only
-.sr-only {
-  position: absolute;
-  left: -10000px;
-  top: auto;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-}
-
 .login-frm {
+  @include font-small;
   @include fc {
     flex-direction: column;
     gap: 2em;
   }
-  min-height: 100vh;
-  @include font-small(1);
+  height: 88vh;
 
   .invalidInput {
     position: absolute;
@@ -111,10 +101,10 @@
 
   &__guest {
     font-family: "Ubuntu", sans-serif;
-    font-size: .8em;
+    font-size: 0.8em;
     font-weight: 500;
     color: var(--clr-secondary-200);
-    
+
     &:where(:hover, :focus) {
       color: var(--clr-secondary-300);
       text-decoration: underline;

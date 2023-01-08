@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { IoEye, IoEyeOff } from "react-icons/io5";
+import { Navbar } from "../../utils/components";
 
 function Login() {
   const [showPass, setShowPass] = useState(false);
@@ -61,6 +62,8 @@ function Login() {
       <Head>
         <title>Login as Admin</title>
       </Head>
+
+      <Navbar type="login"/>
       <form
         className="login-frm"
         onSubmit={handleSubmit}
