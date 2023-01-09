@@ -34,12 +34,6 @@
       cursor: not-allowed;
     }
 
-    &:focus-visible {
-      outline-style: solid;
-      outline-width: 0.2em;
-      outline-offset: 0.3em;
-    }
-
     @include mq("not pointer") {
       gap: 0.2em;
       border-radius: 0.2em;
@@ -81,28 +75,31 @@
   &--admin {
     background-color: var(--clr-neutral-500);
     &:focus-visible {
-      outline: 0.3em solid var(--clr-neutral-500);
+      outline: 2px solid var(--clr-neutral-500);
+      outline-offset: 2px;
     }
   }
 
   &--code {
     background-color: var(--clr-secondary-400);
     &:focus-visible {
-      outline: 0.3em solid var(--clr-secondary-400);
+      outline: 2px solid var(--clr-secondary-400);
+      outline-offset: 2px;
     }
   }
 
   &--write {
     background-color: var(--clr-neutral-400);
     &:focus-visible {
-      outline: 0.3em solid var(--clr-neutral-400);
+      outline: 2px solid var(--clr-neutral-400);
+      outline-offset: 2px;
     }
   }
 
   &--next,
   &--back,
   &--done {
-    &:is(:hover, :focus-visible) {
+    &:is(&, :hover, :focus-visible) {
       border-radius: 50%;
       gap: 0;
     }
@@ -111,13 +108,15 @@
   &--back {
     background-color: var(--clr-primary-400);
     &:focus-visible {
-      outline-color: var(--clr-primary-400);
+      outline: 2px solid var(--clr-primary-400);
+      outline-offset: 2px;
     }
   }
   &--next {
     background-color: var(--clr-neutral-400);
     &:focus-visible {
-      outline-color: var(--clr-neutral-400);
+      outline: 2px solid var(--clr-neutral-400);
+      outline-offset: 2px;
     }
     svg {
       rotate: 180deg;
@@ -126,7 +125,8 @@
   &--done {
     background-color: var(--clr-secondary-400);
     &:focus-visible {
-      outline-color: var(--clr-secondary-400);
+      outline: 2px solid var(--clr-secondary-400);
+      outline-offset: 2px;
     }
   }
 
@@ -137,13 +137,13 @@
     font-weight: 600;
     color: var(--clr-primary-100);
     background-color: var(--clr-neutral-400);
-    
+
     &:focus-visible {
-      outline-color: var(--clr-neutral-400);
+      outline: 2px solid var(--clr-neutral-400);
+      outline-offset: 2px;
     }
     &:is(:hover, :focus-visible) {
       gap: 0;
     }
   }
-
 }
