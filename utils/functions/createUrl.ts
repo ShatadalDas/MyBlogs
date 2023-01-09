@@ -3,7 +3,6 @@ export default function createUrl(title: string): string {
   if (!title) return title;
 
   let words = title.split(" ");
-  // if (words.length === 1) words = title.split("-");
 
   let res = "";
   for (let i = 0; i < words.length; i++) {
@@ -23,6 +22,6 @@ function isAlphaNum(char: string) {
 }
 
 function charToHex(ch: string) {
-  let hex = "%" + Number(ch.charCodeAt(0)).toString(16);
+  let hex = "%" + Number(ch.charCodeAt(0)).toString(16).toUpperCase();
   return hex;
 }
