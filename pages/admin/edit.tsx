@@ -48,9 +48,9 @@ export const DispatchContext = createContext(
   (action: ActionType<Partial<BlogDataType>>) => {}
 );
 
-function Edit({
-  data,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+type ServerProps = InferGetServerSidePropsType<typeof getServerSideProps>;
+
+function Edit({ data }: ServerProps) {
   //* Initial values coming from getServerSideProps
   const initialState = {
     content: data.content,
@@ -59,18 +59,17 @@ function Edit({
     keywords: data.keywords,
   };
 
-  //* Responsible of maitaining all the blog data
+  //* Hooks
   const [state, dispatch] = useReducer(reducer, initialState);
-
-  //* Multistep form to take the MD and meta info seperately
   const { isFirstStep, isLastStep, step, back, next } = useMultiStepForm([
     <EditMD key={0} />,
     <TitleAndMeta key={1} />,
   ]);
+  const router = useRouter();
 
+  //* States
   const [loggedIn, setLoggedIn] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
 
   useEffect(() => {
     setLoggedIn(sessionStorage.getItem("login"));
