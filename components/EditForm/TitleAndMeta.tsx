@@ -1,12 +1,9 @@
-import React, { Dispatch } from "react";
-import { ActionType, BlogDataType } from "../../pages/admin/edit";
+import React, { useContext } from "react";
+import { BlogDataType, DispatchContext, StateContext } from "../../pages/admin/edit";
 
-type Props = {
-  state: BlogDataType;
-  dispatch: Dispatch<ActionType<Partial<BlogDataType>>>;
-};
-
-function TitleAndMeta({ state, dispatch }: Props) {
+function TitleAndMeta() {
+  const state = useContext(StateContext);
+  const dispatch = useContext(DispatchContext);
 
   function updateBlogData(data: Partial<BlogDataType>) {
     dispatch({ type: "update", payload: { ...data } });

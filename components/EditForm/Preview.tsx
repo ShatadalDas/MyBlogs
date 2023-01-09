@@ -1,14 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
+import { StateContext } from "../../pages/admin/edit";
 import { RenderMarkDown } from "../../utils/components";
 
-type Props = {
-  content: string;
-};
-
-function Preview({ content }: Props) {
+function Preview() {
+  const state = useContext(StateContext);
   return (
     <div className="preview">
-      <RenderMarkDown content={content} className="half" />
+      <RenderMarkDown content={state.content} className="half" />
     </div>
   );
 }

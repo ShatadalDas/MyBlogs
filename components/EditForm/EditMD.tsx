@@ -1,19 +1,13 @@
-import React, { Dispatch } from "react";
-import { ActionType, BlogDataType } from "../../pages/admin/edit";
+import React from "react";
 import Editor from "./Editor";
 import Preview from "./Preview";
 
-type Props = {
-  content: string;
-  dispatch: Dispatch<ActionType<Partial<BlogDataType>>>;
-};
-
-function EditMD({ content, dispatch }: Props) {
+function EditMD() {
   return (
     <>
       <div className="editmd">
-        <Editor content={content} dispatch={dispatch} />
-        <Preview content={content} />
+        <Editor />
+        <Preview />
       </div>
     </>
   );

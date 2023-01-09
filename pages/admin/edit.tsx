@@ -1,4 +1,10 @@
-import React, { useEffect, useReducer, useState } from "react";
+import React, {
+  createContext,
+  Dispatch,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 import EditMD from "../../components/EditForm/EditMD";
 import TitleAndMeta from "../../components/EditForm/TitleAndMeta";
 import { useRouter } from "next/router";
@@ -6,10 +12,7 @@ import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { OneBlogType } from "../api/getOneBlog";
 import { useMultiStepForm } from "../../utils/hooks";
 import { Navbar } from "../../utils/components";
-import {
-  createNewBlog,
-  editAnExistingBlog,
-} from "../../utils/functions";
+import { createNewBlog, editAnExistingBlog } from "../../utils/functions";
 
 export type BlogDataType = {
   content: string;
@@ -35,6 +38,16 @@ function reducer(
   }
 }
 
+export const StateContext = createContext({
+  content: "",
+  title: "",
+  metaDes: "",
+  keywords: "",
+});
+export const DispatchContext = createContext(
+  (action: ActionType<Partial<BlogDataType>>) => {}
+);
+
 function Edit({
   data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
@@ -51,8 +64,8 @@ function Edit({
 
   //* Multistep form to take the MD and meta info seperately
   const { isFirstStep, isLastStep, step, back, next } = useMultiStepForm([
-    <EditMD key={0} content={state.content} dispatch={dispatch} />,
-    <TitleAndMeta key={1} state={state} dispatch={dispatch} />,
+    <EditMD key={0} />,
+    <TitleAndMeta key={1} />,
   ]);
 
   const [loggedIn, setLoggedIn] = useState<string | null>(null);
@@ -61,6 +74,10 @@ function Edit({
 
   useEffect(() => {
     setLoggedIn(sessionStorage.getItem("login"));
+
+    return () => {
+      setLoggedIn(null);
+    };
   }, []);
 
   async function finish() {
@@ -78,11 +95,12 @@ function Edit({
         "Sorry, but only admin can create, edit or delete a blog..!"
       );
     }
-    console.log(router.query.id)
+
     if (router.query.id) {
       await editAnExistingBlog(state, router, setLoading);
       return;
     }
+
     await createNewBlog(state, router, setLoading);
   }
 
@@ -98,7 +116,11 @@ function Edit({
           finish={finish}
           loading={loading}
         />
-        {step}
+        <StateContext.Provider value={state}>
+          <DispatchContext.Provider value={dispatch}>
+            {step}
+          </DispatchContext.Provider>
+        </StateContext.Provider>
       </form>
     </>
   );

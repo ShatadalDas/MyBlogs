@@ -1,12 +1,7 @@
-import React, { Dispatch } from "react";
-import { ActionType, BlogDataType } from "../../pages/admin/edit";
+import React, { useContext } from "react";
+import { DispatchContext, StateContext } from "../../pages/admin/edit";
 import MonacoEditor from "@monaco-editor/react";
 import * as monaco from "monaco-editor";
-
-type Props = {
-  content: string;
-  dispatch: Dispatch<ActionType<Partial<BlogDataType>>>;
-};
 
 const MONACO_OPTIONS: monaco.editor.IEditorConstructionOptions = {
   minimap: {
@@ -18,7 +13,10 @@ const MONACO_OPTIONS: monaco.editor.IEditorConstructionOptions = {
   mouseWheelZoom: true,
 };
 
-function Editor({ content, dispatch }: Props) {
+function Editor() {
+  const state = useContext(StateContext);
+  const dispatch = useContext(DispatchContext);
+
   return (
     <MonacoEditor
       className="editor"
@@ -27,11 +25,10 @@ function Editor({ content, dispatch }: Props) {
       onChange={(val) =>
         dispatch({ type: "update", payload: { content: val } })
       }
-      value={content}
+      value={state.content}
       defaultValue="<!-- write the content in markdown language -->"
       width="50%"
       height="100%"
-      
       options={MONACO_OPTIONS}
     />
   );
