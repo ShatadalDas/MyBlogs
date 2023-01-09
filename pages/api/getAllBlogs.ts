@@ -24,7 +24,7 @@ export default async function handler(
     console.log(req.query);
 
     let blogs = await (Blogs as Model<BlogType>)
-      .find<AllBlogsType>()
+      .find<AllBlogsType>({})
       .sort("+updatedAt")
       .select("_id title content time");
 

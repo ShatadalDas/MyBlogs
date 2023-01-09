@@ -60,7 +60,8 @@ function Login() {
   return (
     <>
       <Head>
-        <title>Login as Admin</title>
+        <title>Login with Admin Credentials</title>
+        <meta name="description" content="Admin page, where the admin can enter correct credentials and will be allowed to create, edit or delete any blog." />
       </Head>
 
       <Navbar type="login"/>

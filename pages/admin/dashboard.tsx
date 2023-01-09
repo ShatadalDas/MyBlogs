@@ -16,7 +16,6 @@ function Dashboard(
 ) {
   const totalBlogs = props.totalBlogs;
   const [blogs, setBlogs] = useState<AllBlogsType[]>(props.blogs);
-  const [loading, setLoading] = useState(false);
 
   async function fetchData() {
     try {
@@ -36,7 +35,7 @@ function Dashboard(
   return (
     <>
       <Head>
-        <title>Admin Dashboard</title>
+        <title>Dashboard</title>
       </Head>
       <Navbar type="dashboard" />
       <main className="dashboard-wrapper">

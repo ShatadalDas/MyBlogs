@@ -13,6 +13,7 @@ import { OneBlogType } from "../api/getOneBlog";
 import { useMultiStepForm } from "../../utils/hooks";
 import { Navbar } from "../../utils/components";
 import { createNewBlog, editAnExistingBlog } from "../../utils/functions";
+import Head from "next/head";
 
 export type BlogDataType = {
   content: string;
@@ -72,6 +73,10 @@ function Edit({ data }: ServerProps) {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    /*
+    * Session Storage has be used inside a
+    * useEffect as it's a server component 
+    */    
     setLoggedIn(sessionStorage.getItem("login"));
 
     return () => {
@@ -105,6 +110,18 @@ function Edit({ data }: ServerProps) {
 
   return (
     <>
+      <Head>
+        <title>
+          {router.query.id ? "Edit an existing Blog" : "Write a new Blog"}
+        </title>
+        <meta
+          name="description"
+          content={
+            router.query.id ? "Edit an existing Blog" : "Write a new Blog"
+          }
+        />
+      </Head>
+      
       <form className="edit-wrapper" onSubmit={(e) => e.preventDefault()}>
         <Navbar
           type="form"
