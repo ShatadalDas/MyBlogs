@@ -21,7 +21,7 @@
 
   &__grp {
     --clr: #fff4;
-    font-family: "Lato", sans-serif;
+    font-family: var(--fnt-lato);
     position: relative;
     width: 60%;
     max-width: 30rem;
@@ -82,10 +82,10 @@
     button {
       padding: 0.5em 1.2em;
       border-radius: 0.2em;
-      font-family: "Ubuntu";
+      font-family: var(--fnt-ubuntu);
+      font-weight: 600;
       background-color: var(--clr-neutral-400);
       color: var(--clr-primary-100);
-      font-weight: 600;
 
       &:disabled {
         filter: brightness(40%);
@@ -100,7 +100,7 @@
   }
 
   &__guest {
-    font-family: "Ubuntu", sans-serif;
+    font-family: var(--fnt-ubuntu);
     font-size: 0.8em;
     font-weight: 500;
     color: var(--clr-secondary-200);

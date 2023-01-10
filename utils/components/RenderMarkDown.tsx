@@ -6,6 +6,7 @@ import { Prism } from "react-syntax-highlighter";
 import { atomDark as theme } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import Image from "next/image";
 import { CopyCode } from "../../utils/components";
+import useFont from "../hooks/useFont";
 
 type Props = {
   content: string;
@@ -13,13 +14,23 @@ type Props = {
   element?: keyof JSX.IntrinsicElements;
 };
 
+const { consolas, roboto, ubuntu, lato } = useFont();
+
 function RenderMarkDown({
   content,
   element: Wrapper = "article",
   className,
 }: Props) {
   return (
-    <Wrapper className={`markdown ${className ? className : ""}`}>
+    <Wrapper
+      className={`markdown 
+      ${className ? className : ""} 
+      ${consolas.variable} 
+      ${roboto.variable} 
+      ${ubuntu.variable} 
+      ${lato.variable}
+      `}
+    >
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         rehypePlugins={[rehypeCodeTitles]}

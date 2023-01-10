@@ -6,6 +6,7 @@ import { IoIosArrowBack } from "react-icons/io";
 import LoadingBar from "./LoadingBar";
 import { MdDone } from "react-icons/md";
 import { useRouter } from "next/router";
+import useFont from "../hooks/useFont";
 
 type Props = {
   type: "index" | "dashboard" | "form" | "login";
@@ -17,6 +18,8 @@ type Props = {
   isFirstStep?: boolean;
   isLastStep?: boolean;
 };
+
+const { lato } = useFont();
 
 function Navbar({
   type,
@@ -33,7 +36,7 @@ function Navbar({
   return (
     <header>
       <LoadingBar show={loading ? loading : false} />
-      <nav className="navbar">
+      <nav className={`navbar ${lato.variable}`}>
         <Image
           src="/logo.svg"
           alt="Logo"

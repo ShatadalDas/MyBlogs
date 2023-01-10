@@ -1,5 +1,3 @@
-"use strict";
-
 import axios from "axios";
 import Head from "next/head";
 import Link from "next/link";
@@ -7,6 +5,9 @@ import { useRouter } from "next/router";
 import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 import { Navbar } from "../../utils/components";
+import useFont from "../../utils/hooks/useFont";
+
+const { lato, ubuntu } = useFont();
 
 function Login() {
   const [showPass, setShowPass] = useState(false);
@@ -61,14 +62,20 @@ function Login() {
     <>
       <Head>
         <title>Login with Admin Credentials</title>
-        <meta name="description" content="Admin page, where the admin can enter correct credentials and will be allowed to create, edit or delete any blog." />
+        <meta
+          name="description"
+          content="Admin page, where the admin can enter correct credentials and will be allowed to create, edit or delete any blog."
+        />
       </Head>
 
-      <Navbar type="login"/>
+      <Navbar type="login" />
       <form
-        className="login-frm"
         onSubmit={handleSubmit}
         aria-label="Login form"
+        className={`login-frm
+        ${lato.variable}
+        ${ubuntu.variable}
+        `}
       >
         <div className="invalidInput" aria-hidden>
           {error}

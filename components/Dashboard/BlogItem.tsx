@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { HiPencil } from "react-icons/hi2";
 import { MdDelete } from "react-icons/md";
+import useFont from "../../utils/hooks/useFont";
 
 type Props = {
   _id: string;
@@ -11,8 +12,9 @@ type Props = {
   time: string;
 };
 
+const { work_sans, ubuntu } = useFont();
+
 function BlogItem(props: Props) {
-  const router = useRouter();
   const [loggedIn, setLoggedIn] = useState<string | null>(null);
   useEffect(() => {
     setLoggedIn(sessionStorage.getItem("login"));
@@ -22,11 +24,17 @@ function BlogItem(props: Props) {
     if (loggedIn === "true") {
       deleteBlog(props._id);
     } else {
-      alert("Sorry, but only admin can delete, update or edit a blog!")
+      alert("Sorry, but only admin can delete, update or edit a blog!");
     }
   }
   return (
-    <div className="dashboard-blogItem">
+    <div
+      className={`
+          dashboard-blogItem 
+          ${work_sans.variable} 
+          ${ubuntu.variable}
+      `}
+    >
       <div className="dashboard-blogItem__wrapper">
         <h2>{props.title}</h2>
         <p>{props.time}</p>

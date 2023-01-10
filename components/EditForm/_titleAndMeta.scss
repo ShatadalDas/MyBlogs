@@ -14,7 +14,8 @@
     border-radius: 0.3em;
     padding: 0.5em;
     color: var(--clr-primary-100);
-    font-family: "Inria Serif", serif;
+    font-family: var(--fnt-work-sans);
+    font-weight: 600;
     letter-spacing: 0.05em;
     scrollbar-width: none;
     ::-webkit-scrollbar {
@@ -23,12 +24,12 @@
 
     &:nth-of-type(2) {
       font-size: 1em;
-      font-family: "Inconsolata", monospace;
+      font-family: var(--fnt-inconsolata);
     }
 
     &:nth-of-type(3) {
-        font-size: 1.2em;
-        font-family: "Ubuntu", sans-serif;
+        font-size: 1.1em;
+        font-family: var(--fnt-ubuntu);
         word-spacing: 0.3em;
     }
   }

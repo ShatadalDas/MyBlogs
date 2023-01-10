@@ -1,5 +1,12 @@
 import React, { useContext } from "react";
-import { BlogDataType, DispatchContext, StateContext } from "../../pages/admin/edit";
+import {
+  BlogDataType,
+  DispatchContext,
+  StateContext,
+} from "../../pages/admin/edit";
+import useFont from "../../utils/hooks/useFont";
+
+const { work_sans, inconsolata, ubuntu } = useFont();
 
 function TitleAndMeta() {
   const state = useContext(StateContext);
@@ -10,7 +17,13 @@ function TitleAndMeta() {
   }
 
   return (
-    <main className="title-frm-wrapper">
+    <main
+      className={`title-frm-wrapper
+    ${work_sans.variable}
+    ${inconsolata.variable}
+    ${ubuntu.variable}
+    `}
+    >
       <label className="sr-only" htmlFor="title">
         Title
       </label>

@@ -27,7 +27,7 @@
   &__title {
     font-size: 1.3em;
     color: var(--clr-primary-100);
-    font-family: "Work Sans", monspace;
+    font-family: var(--fnt-work-sans);
     font-weight: 600;
     letter-spacing: 0.02em;
     overflow: hidden;
@@ -36,7 +36,7 @@
 
   &__time {
     color: var(--clr-primary-200);
-    font-family: "Ubuntu", sans-serif;
+    font-family: var(--fnt-ubuntu);
     font-size: 0.55em;
     text-align: right;
   }

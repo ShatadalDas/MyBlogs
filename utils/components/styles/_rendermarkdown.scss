@@ -20,10 +20,9 @@
   }
 
   #{headings(2, 6)} {
-    font-family: "Consolas", monospace;
+    font-family: var(--fnt-consolas);
     margin-block-start: 1em;
     word-spacing: -0.25em;
-    font-weight: bold;
   }
 
   li {
@@ -44,8 +43,8 @@
   ul,
   ol {
     margin-block-start: 0.7em;
-    font-size: 0.6em;
-    font-family: "Roboto", sans-serif;
+    font-size: 0.7em;
+    font-family: var(--fnt-roboto);
 
     a {
       font-size: 1em;
@@ -63,6 +62,7 @@
     }
 
     strong {
+      font-size: 1em;
       font-weight: 600;
     }
   }
@@ -113,7 +113,7 @@
 
     p {
       font-style: italic;
-      font-family: "Ubuntu", sans-serif;
+      font-family: var(--fnt-ubuntu);
       font-weight: 400;
     }
 
@@ -143,6 +143,6 @@
   .rehype-code-title {
     translate: 0 0.4em;
     font-size: 1.1em;
-    font-family: "Lato", sans-serif;
+    font-family: var(--fnt-lato);
   }
 }

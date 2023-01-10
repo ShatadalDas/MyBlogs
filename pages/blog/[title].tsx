@@ -5,10 +5,13 @@ import { Footer } from "../../utils/components";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import { LoadingBar, RenderMarkDown } from "../../utils/components";
+import useFont from "../../utils/hooks/useFont";
 
-function Blog({
-  data,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+type ServerProps = InferGetServerSidePropsType<typeof getServerSideProps>;
+
+const { work_sans, ubuntu, lato } = useFont();
+
+function Blog({ data }: ServerProps) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
@@ -21,7 +24,13 @@ function Blog({
       </Head>
 
       <LoadingBar show={loading} />
-      <div className="blog--wrapper">
+      <div
+        className={`blog--wrapper
+          ${work_sans.variable}
+          ${ubuntu.variable}
+          ${lato.variable}
+      `}
+      >
         <button
           className="blog--back"
           onClick={() => {

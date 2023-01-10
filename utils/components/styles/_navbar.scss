@@ -40,12 +40,14 @@
     }
 
     &::after {
+      --fnt-size: 0.57em;
+
       content: attr(data-name);
       transform-origin: left;
-      font-size: 0.57em;
-      font-family: "Lato";
-      font-weight: 600;
+      font-family: var(--fnt-lato);
+      font-weight: 700;
       color: var(--clr-primary-100);
+      font-size: var(--fnt-size);
       @include mq("pointer") {
         font-size: 0;
         transition: scale 200ms, font-size 200ms;
@@ -57,7 +59,7 @@
         border-radius: 0.2em;
         gap: 0.2em;
         &::after {
-          font-size: 0.57em;
+          font-size: var(--fnt-size);
         }
       }
     }
@@ -133,8 +135,8 @@
   &--skip {
     border-radius: 0.2em;
     font-size: 0.6em;
-    font-family: "Lato";
-    font-weight: 600;
+    font-family: var(--fnt-lato);  //font-weight: 700
+    font-weight: 700;
     color: var(--clr-primary-100);
     background-color: var(--clr-neutral-400);
 
