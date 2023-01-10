@@ -5,8 +5,9 @@
   flex: 1;
   display: flex;
   gap: 0.2rem;
-  height: calc(100% - 3em - 0.5vh);
-  
+  contain: size;
+  flex-grow: 1;
+
   & > * {
     width: 50%;
   }

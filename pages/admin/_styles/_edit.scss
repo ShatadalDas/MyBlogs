@@ -1,11 +1,12 @@
 @use "../../../styles/modules/mixins" as *;
 
 .edit-wrapper {
-  @include fd-c;
+  @include fd-c(0em);
   height: 99vh;
   overflow: hidden;
-  align-items: flex-start;
-  
+  contain: size;
+  flex-grow: 1;
+
   & > * {
     width: 100%;
   }
