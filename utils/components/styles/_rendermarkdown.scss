@@ -1,12 +1,5 @@
 @use "../../../styles/modules/mixins" as *;
-
-@function headings($from: 1, $to: 6) {
-  @if $from == $to {
-    @return "h#{$from}";
-  } @else {
-    @return "h#{$from}," + headings($from + 1, $to);
-  }
-}
+@use "../../../styles/modules/functions" as *;
 
 //* using :where() to eliminate the specificity
 :where(.markdown) {
@@ -45,6 +38,10 @@
     margin-block-start: 0.7em;
     font-size: 0.7em;
     font-family: var(--fnt-roboto);
+
+    li {
+      margin-block: 0.6em;
+    }
 
     a {
       font-size: 1em;
