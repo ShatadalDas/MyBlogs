@@ -1,6 +1,6 @@
 @function headings($from: 1, $to: 6, $excl: 0) {
   $res: "";
-  @for $i from $from to $to + 1 {
+  @for $i from $from through $to {
     @if $i != $excl {
       $res: $res + "h#{$i}, ";
     }
