@@ -9,11 +9,11 @@ import useFont from "../../utils/hooks/useFont";
 
 type ServerProps = InferGetServerSidePropsType<typeof getServerSideProps>;
 
-const { work_sans, ubuntu, lato } = useFont();
 
 function Blog({ data }: ServerProps) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const { work_sans, ubuntu, lato } = useFont();
 
   return (
     <>

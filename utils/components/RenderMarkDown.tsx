@@ -14,13 +14,13 @@ type Props = {
   element?: keyof JSX.IntrinsicElements;
 };
 
-const { consolas, roboto, ubuntu, lato } = useFont();
 
 function RenderMarkDown({
   content,
   element: Wrapper = "article",
   className,
 }: Props) {
+  const { consolas, roboto, ubuntu, lato } = useFont();
   return (
     <Wrapper
       className={`markdown 

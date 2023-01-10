@@ -6,11 +6,11 @@ import {
 } from "../../pages/admin/edit";
 import useFont from "../../utils/hooks/useFont";
 
-const { work_sans, inconsolata, ubuntu } = useFont();
 
 function TitleAndMeta() {
   const state = useContext(StateContext);
   const dispatch = useContext(DispatchContext);
+  const { work_sans, inconsolata, ubuntu } = useFont();
 
   function updateBlogData(data: Partial<BlogDataType>) {
     dispatch({ type: "update", payload: { ...data } });

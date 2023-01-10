@@ -7,7 +7,6 @@ import { IoEye, IoEyeOff } from "react-icons/io5";
 import { Navbar } from "../../utils/components";
 import useFont from "../../utils/hooks/useFont";
 
-const { lato, ubuntu } = useFont();
 
 function Login() {
   const [showPass, setShowPass] = useState(false);
@@ -17,6 +16,7 @@ function Login() {
   const [error, setError] = useState("");
   const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
   const router = useRouter();
+  const { lato, ubuntu } = useFont();
 
   useEffect(() => {
     setAudio(new Audio("/error.mp3"));

@@ -9,9 +9,9 @@ type Props = {
   id: string;
   setLoading: Dispatch<SetStateAction<boolean>>;
 };
-const { work_sans, ubuntu } = useFont();
 
 function BlogItem({ title, time, id, setLoading }: Props) {
+  const { work_sans, ubuntu } = useFont();
   return (
     <Link href={`blog/${createUrl(title)}/?id=${id}`}>
       <div

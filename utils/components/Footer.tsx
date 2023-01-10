@@ -1,9 +1,9 @@
 import React from "react";
 import useFont from "../hooks/useFont";
 
-const { inconsolata } = useFont();
 
 function Footer() {
+  const { inconsolata } = useFont();
   return (
     <footer
       className={`footer 

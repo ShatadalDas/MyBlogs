@@ -12,10 +12,11 @@ type Props = {
   time: string;
 };
 
-const { work_sans, ubuntu } = useFont();
 
 function BlogItem(props: Props) {
   const [loggedIn, setLoggedIn] = useState<string | null>(null);
+  const { work_sans, ubuntu } = useFont();
+  
   useEffect(() => {
     setLoggedIn(sessionStorage.getItem("login"));
   }, []);

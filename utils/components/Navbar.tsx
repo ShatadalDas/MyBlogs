@@ -19,7 +19,6 @@ type Props = {
   isLastStep?: boolean;
 };
 
-const { lato } = useFont();
 
 function Navbar({
   type,
@@ -32,6 +31,7 @@ function Navbar({
   loading,
 }: Props) {
   const router = useRouter();
+  const { lato } = useFont();
 
   return (
     <header>
