@@ -44,20 +44,21 @@
   ul,
   ol {
     margin-block-start: 0.7em;
-    font-size: 0.7em;
-    // font-weight: 500;
+    font-size: 0.6em;
     font-family: "Roboto", sans-serif;
+
+    a {
+      font-size: 1em;
+    }
 
     em {
       font-size: 0.95em;
       font-style: italic;
-      font-weight: normal;
       margin-inline: 0.1em;
     }
 
     del {
       font-size: 0.95em;
-      font-weight: normal;
       margin-inline: 0.1em;
     }
 
@@ -67,7 +68,8 @@
   }
 
   img {
-    height: 20em;
+    max-height: 20em;
+    height: auto;
     width: auto;
     max-width: 100%;
     border-radius: 0.3em;

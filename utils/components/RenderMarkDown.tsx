@@ -40,11 +40,11 @@ function RenderMarkDown({
                     ? src
                     : "https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found-300x169.jpg"
                 }
-                alt={alt ? alt : "An Image"}
+                alt={alt ? alt : "Image url not provided"}
                 height={1000}
                 width={1000}
                 loading="lazy"
-                quality={100}
+                quality={50}
               />
             );
           },
