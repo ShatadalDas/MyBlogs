@@ -20,7 +20,8 @@ function Dashboard(
   const setLoading = useContext(SetLoadingContext);
   useEffect(() => {
     setLoading(() => false);
-  }, []);
+    return () => setLoading(() => true);
+  }, [setLoading]);
 
   async function fetchData() {
     try {

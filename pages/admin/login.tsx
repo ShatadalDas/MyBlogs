@@ -34,7 +34,8 @@ function Login() {
   const setLoading = useContext(SetLoadingContext);
   useEffect(() => {
     setLoading(() => false);
-  }, []);
+    return () => setLoading(() => true);
+  }, [setLoading]);
 
   function handleLoginID(e: ChangeEvent<HTMLInputElement>) {
     setLoginID(e.target.value);

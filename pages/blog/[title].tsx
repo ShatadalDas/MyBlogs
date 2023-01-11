@@ -16,7 +16,8 @@ function Blog({ data }: ServerProps) {
   const setLoading = useContext(SetLoadingContext);
   useEffect(() => {
     setLoading(() => false);
-  }, []);
+    return () => setLoading(() => true);
+  }, [setLoading]);
 
   return (
     <>

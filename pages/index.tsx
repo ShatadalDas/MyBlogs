@@ -17,7 +17,8 @@ function Index(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const setLoading = useContext(SetLoadingContext);
   useEffect(() => {
     setLoading(() => false);
-  }, []);
+    return () => setLoading(() => true);
+  }, [setLoading]);
 
   async function fetchData() {
     try {
