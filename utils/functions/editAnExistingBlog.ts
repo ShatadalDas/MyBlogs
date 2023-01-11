@@ -9,6 +9,7 @@ export default async function editAnExistingBlog(
   router: NextRouter,
   setLoading: Dispatch<SetStateAction<boolean>>
 ) {
+
   try {
     const res = await axios.put("/api/editBlog", {
       _id: router.query.id,
@@ -21,11 +22,11 @@ export default async function editAnExistingBlog(
     if (res.status === 200) {
       router.push("/admin/dashboard");
       setTimeout(() => {
-        alert("Blog created successfully!");
+        alert("Blog editted successfully!");
       }, 500);
     }
   } catch (error) {
-    setLoading(false);
+    setLoading(() => false);
     alert("Some Error occurred.. :(");
     console.log(error);
   }

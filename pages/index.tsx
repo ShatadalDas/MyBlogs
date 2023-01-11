@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { BlogItem, BlogItemLoading } from "../components";
 import { AllBlogsType } from "./api/getAllBlogs";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -6,6 +6,7 @@ import { InferGetServerSidePropsType } from "next";
 import Head from "next/head";
 import { clamp } from "../utils/functions";
 import { Navbar, Footer } from "../utils/components";
+import { SetLoadingContext } from "./_app";
 
 let start = 0;
 let end = 0;
@@ -13,7 +14,10 @@ let end = 0;
 function Index(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const totalBlogs = props.totalBlogs;
   const [blogs, setBlogs] = useState<AllBlogsType[]>(props.blogs);
-  const [loading, setLoading] = useState(false);
+  const setLoading = useContext(SetLoadingContext);
+  useEffect(() => {
+    setLoading(() => false);
+  }, []);
 
   async function fetchData() {
     try {
@@ -40,8 +44,8 @@ function Index(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
         />
       </Head>
 
+      <Navbar type="index" />
       <div className="index">
-        <Navbar type="index" setLoading={setLoading} loading={loading} />
         <main className="index__blogs">
           <InfiniteScroll
             dataLength={blogs.length}
@@ -55,7 +59,6 @@ function Index(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
                 title={item.title}
                 time={item.time}
                 id={item._id}
-                setLoading={setLoading}
               />
             ))}
           </InfiniteScroll>

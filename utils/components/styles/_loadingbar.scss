@@ -2,8 +2,10 @@
 
 .loading-bar {
     height: .09rem;
-    position: relative;
-    overflow-x: hidden;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    overflow: hidden;
     &::before {
         content: "";
         height: 100%;

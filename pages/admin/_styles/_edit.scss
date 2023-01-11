@@ -2,10 +2,8 @@
 
 .edit-wrapper {
   @include fd-c(0em);
-  height: 99vh;
+  height: 100vh;
   overflow: hidden;
-  contain: size;
-  flex-grow: 1;
 
   & > * {
     width: 100%;

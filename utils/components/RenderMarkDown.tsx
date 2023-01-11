@@ -6,14 +6,13 @@ import { Prism } from "react-syntax-highlighter";
 import { atomDark as theme } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import Image from "next/image";
 import { CopyCode } from "../../utils/components";
-import useFont from "../hooks/useFont";
+import { useFont } from "../hooks";
 
 type Props = {
   content: string;
   className?: string;
   element?: keyof JSX.IntrinsicElements;
 };
-
 
 function RenderMarkDown({
   content,

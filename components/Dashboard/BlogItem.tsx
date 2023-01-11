@@ -1,10 +1,11 @@
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { HiPencil } from "react-icons/hi2";
 import { MdDelete } from "react-icons/md";
-import useFont from "../../utils/hooks/useFont";
+import { SetLoadingContext } from "../../pages/_app";
+import { useFont } from "../../utils/hooks";
 
 type Props = {
   _id: string;
@@ -12,18 +13,20 @@ type Props = {
   time: string;
 };
 
-
 function BlogItem(props: Props) {
   const [loggedIn, setLoggedIn] = useState<string | null>(null);
   const { work_sans, ubuntu } = useFont();
-  
+  const setLoading = useContext(SetLoadingContext);
+  const router = useRouter();
+
   useEffect(() => {
     setLoggedIn(sessionStorage.getItem("login"));
   }, []);
 
-  function handleDelete() {
+  async function handleDelete() {
     if (loggedIn === "true") {
-      deleteBlog(props._id);
+      await deleteBlog(props._id);
+      router.reload();
     } else {
       alert("Sorry, but only admin can delete, update or edit a blog!");
     }
@@ -41,7 +44,10 @@ function BlogItem(props: Props) {
         <p>{props.time}</p>
       </div>
       <div className="dashboard-blogItem__btns">
-        <Link href={`/admin/edit?id=${props._id}`}>
+        <Link
+          href={`/admin/edit?id=${props._id}`}
+          onClick={() => setLoading(() => true)}
+        >
           <button>
             <HiPencil />
           </button>
@@ -59,7 +65,7 @@ async function deleteBlog(id: string) {
     const res = await axios.delete(`/api/deleteBlog?id=${id}`);
 
     if (res.status === 200) {
-      alert("Blog has been deleted, refresh the page to see the changes.");
+      alert("Blog has been deleted, the page will be refreshed automatically.");
     }
   } catch (e) {
     alert("Some Error occurred.. :(");

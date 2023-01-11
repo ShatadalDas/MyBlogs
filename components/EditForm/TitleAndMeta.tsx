@@ -4,8 +4,7 @@ import {
   DispatchContext,
   StateContext,
 } from "../../pages/admin/edit";
-import useFont from "../../utils/hooks/useFont";
-
+import { useFont } from "../../utils/hooks";
 
 function TitleAndMeta() {
   const state = useContext(StateContext);

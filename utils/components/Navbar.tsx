@@ -1,17 +1,30 @@
 import Image from "next/image";
 import Link from "next/link";
-import React, { Dispatch, SetStateAction, useEffect } from "react";
+import React, {
+  Dispatch,
+  SetStateAction,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { HiPencil } from "react-icons/hi2";
 import { IoIosArrowBack } from "react-icons/io";
-import LoadingBar from "./LoadingBar";
 import { MdDone } from "react-icons/md";
 import { useRouter } from "next/router";
-import useFont from "../hooks/useFont";
+import { useFont } from "../hooks";
+import { SetLoadingContext } from "../../pages/_app";
 
 type Props = {
   type: "index" | "dashboard" | "form" | "login";
   loading?: boolean;
-  setLoading?: Dispatch<SetStateAction<boolean>>;
+  next?: () => void;
+  back?: () => void;
+  finish?: () => void;
+  isFirstStep?: boolean;
+  isLastStep?: boolean;
+};
+type CompProps = {
+  type: "index" | "dashboard" | "form" | "login";
   next?: () => void;
   back?: () => void;
   finish?: () => void;
@@ -19,23 +32,12 @@ type Props = {
   isLastStep?: boolean;
 };
 
-
-function Navbar({
-  type,
-  next,
-  back,
-  finish,
-  isFirstStep,
-  isLastStep,
-  setLoading,
-  loading,
-}: Props) {
+function Navbar({ type, next, back, finish, isFirstStep, isLastStep }: Props) {
   const router = useRouter();
   const { lato } = useFont();
-
+  const setLoading = useContext(SetLoadingContext);
   return (
     <header>
-      <LoadingBar show={loading ? loading : false} />
       <nav className={`navbar ${lato.variable}`}>
         <Image
           src="/logo.svg"
@@ -44,7 +46,7 @@ function Navbar({
           width={100}
           className="navbar__logo"
           onClick={() => {
-            if (setLoading !== undefined) setLoading(true);
+            setLoading(() => true);
             router.back();
           }}
           title="Back"
@@ -52,7 +54,6 @@ function Navbar({
         <ul className="navbar__list">
           <RenderButtons
             type={type}
-            setLoading={setLoading}
             next={next}
             back={back}
             finish={finish}
@@ -70,52 +71,54 @@ function RenderButtons({
   next,
   back,
   finish,
-  setLoading,
   isFirstStep,
   isLastStep,
-}: Props) {
+}: CompProps) {
   const router = useRouter();
+  const setLoading = useContext(SetLoadingContext);
   switch (type) {
     case "index":
-      if (setLoading)
-        return (
-          <>
-            <Link href="/admin/login">
-              <li className="navbar__items">
-                <button
-                  className="navbar--admin"
-                  data-name="Admin"
-                  onClick={() => setLoading(true)}
-                >
-                  <Image
-                    src="/shield.svg"
-                    alt="admin svg"
-                    height={20}
-                    width={20}
-                  />
-                </button>
-              </li>
-            </Link>
-            <Link href="https://github.com/ShatadalDas/MyBlogs" target="_blank">
-              <li className="navbar__items">
-                <button className="navbar--code" data-name="Code">
-                  <Image
-                    src="/hashTag.svg"
-                    alt="hashtag svg"
-                    height={20}
-                    width={20}
-                  />
-                </button>
-              </li>
-            </Link>
-          </>
-        );
+      return (
+        <>
+          <Link href="/admin/login">
+            <li className="navbar__items">
+              <button
+                className="navbar--admin"
+                data-name="Admin"
+                onClick={() => setLoading(true)}
+              >
+                <Image
+                  src="/shield.svg"
+                  alt="admin svg"
+                  height={20}
+                  width={20}
+                />
+              </button>
+            </li>
+          </Link>
+          <Link href="https://github.com/ShatadalDas/MyBlogs" target="_blank">
+            <li className="navbar__items">
+              <button className="navbar--code" data-name="Code">
+                <Image
+                  src="/hashTag.svg"
+                  alt="hashtag svg"
+                  height={20}
+                  width={20}
+                />
+              </button>
+            </li>
+          </Link>
+        </>
+      );
 
     case "dashboard":
       return (
         <>
           <Link href="/admin/edit">
-            <li className="navbar__items">
+            <li
+              className="navbar__items"
+              onClick={() => setLoading(() => true)}
+            >
               <button
                 className="navbar--write"
                 data-name="Write"
@@ -151,7 +154,6 @@ function RenderButtons({
             <li className="navbar__items">
               <button className="navbar--next" onClick={next}>
                 <IoIosArrowBack />
-                {/* <MdNavigateNext /> */}
               </button>
             </li>
           )}
@@ -162,7 +164,10 @@ function RenderButtons({
         <>
           <li
             className="navbar__items"
-            onClick={() => router.push("/admin/dashboard")}
+            onClick={() => {
+              setLoading(() => true);
+              router.push("/admin/dashboard");
+            }}
           >
             <button className="navbar--skip">Skip</button>
           </li>

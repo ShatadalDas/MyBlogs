@@ -1,19 +1,22 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { type OneBlogType } from "../api/getOneBlog";
 import { Footer } from "../../utils/components";
 import { useRouter } from "next/router";
 import Head from "next/head";
-import { LoadingBar, RenderMarkDown } from "../../utils/components";
-import useFont from "../../utils/hooks/useFont";
+import { RenderMarkDown } from "../../utils/components";
+import { useFont } from "../../utils/hooks";
+import { SetLoadingContext } from "../_app";
 
 type ServerProps = InferGetServerSidePropsType<typeof getServerSideProps>;
 
-
 function Blog({ data }: ServerProps) {
   const router = useRouter();
-  const [loading, setLoading] = useState(false);
   const { work_sans, ubuntu, lato } = useFont();
+  const setLoading = useContext(SetLoadingContext);
+  useEffect(() => {
+    setLoading(() => false);
+  }, []);
 
   return (
     <>
@@ -23,7 +26,6 @@ function Blog({ data }: ServerProps) {
         <meta name="keywords" content={data.keywords} />
       </Head>
 
-      <LoadingBar show={loading} />
       <div
         className={`blog--wrapper
           ${work_sans.variable}
@@ -35,7 +37,7 @@ function Blog({ data }: ServerProps) {
           className="blog--back"
           onClick={() => {
             router.back();
-            setLoading(true);
+            setLoading(() => true);
           }}
         >
           <svg

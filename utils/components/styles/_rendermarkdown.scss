@@ -8,6 +8,7 @@
   line-height: 1.5;
   letter-spacing: 0.023em;
 
+  // don't want any h1 in the blog accept the title
   h1 {
     display: none;
   }
@@ -15,7 +16,6 @@
   #{headings(2, 6)} {
     font-family: var(--fnt-consolas);
     margin-block-start: 1em;
-    word-spacing: -0.25em;
   }
 
   li {

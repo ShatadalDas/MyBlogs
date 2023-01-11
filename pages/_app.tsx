@@ -4,9 +4,15 @@ import "../components/globals.scss";
 import "../utils/components/styles/globals.scss";
 import type { AppProps } from "next/app";
 import Head from "next/head";
+import { createContext, Dispatch, SetStateAction, useState } from "react";
+import { LoadingBar } from "../utils/components";
+
+export const SetLoadingContext = createContext<
+  Dispatch<SetStateAction<boolean>>
+>(() => {});
 
 export default function App({ Component, pageProps }: AppProps) {
-
+  const [loading, setLoading] = useState(false);
   return (
     <>
       <Head>
@@ -55,8 +61,11 @@ export default function App({ Component, pageProps }: AppProps) {
           href="/favicon_io/favicon.ico"
         />
         <link rel="manifest" href="/favicon_io/site.webmanifest" />
-      </Head>      
-      <Component {...pageProps} />
+      </Head>
+      <LoadingBar show={loading} />
+      <SetLoadingContext.Provider value={setLoading}>
+        <Component {...pageProps} />
+      </SetLoadingContext.Provider>
     </>
   );
 }

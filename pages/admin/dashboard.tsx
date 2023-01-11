@@ -1,12 +1,13 @@
 import { InferGetServerSidePropsType } from "next";
 import Head from "next/head";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { BlogItemLoading } from "../../components";
 import BlogItem from "../../components/Dashboard/BlogItem";
 import { Navbar, Footer } from "../../utils/components";
 import { clamp } from "../../utils/functions";
 import { AllBlogsType } from "../api/getAllBlogs";
+import { SetLoadingContext } from "../_app";
 
 let start = 0;
 let end = 0;
@@ -16,6 +17,10 @@ function Dashboard(
 ) {
   const totalBlogs = props.totalBlogs;
   const [blogs, setBlogs] = useState<AllBlogsType[]>(props.blogs);
+  const setLoading = useContext(SetLoadingContext);
+  useEffect(() => {
+    setLoading(() => false);
+  }, []);
 
   async function fetchData() {
     try {

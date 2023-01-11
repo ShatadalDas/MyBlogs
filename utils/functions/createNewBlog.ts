@@ -9,7 +9,6 @@ export default async function createNewBlog(
   router: NextRouter,
   setLoading: Dispatch<SetStateAction<boolean>>
 ) {
-  console.log(generateTime());
   try {
     const res = await axios.post("/api/createBlog", {
       title: formData.title,
@@ -26,7 +25,7 @@ export default async function createNewBlog(
       }, 500);
     }
   } catch (error) {
-    setLoading(false);
+    setLoading(() => false);
     alert("Some Error occurred.. :(");
     console.log(error);
   }

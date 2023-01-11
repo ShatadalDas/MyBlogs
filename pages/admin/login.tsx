@@ -2,11 +2,20 @@ import axios from "axios";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import {
+  ChangeEvent,
+  FormEvent,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 import { Navbar } from "../../utils/components";
-import useFont from "../../utils/hooks/useFont";
+import { useFont } from "../../utils/hooks";
+import { SetLoadingContext } from "../_app";
 
+// const errorAudio = new Audio("/error.mp3");
 
 function Login() {
   const [showPass, setShowPass] = useState(false);
@@ -14,12 +23,17 @@ function Login() {
   const [pass, setPass] = useState("");
   const [btnDisabled, setBtnDisabled] = useState(false);
   const [error, setError] = useState("");
-  const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
   const router = useRouter();
   const { lato, ubuntu } = useFont();
-
+  const errorAudio = useRef<HTMLAudioElement | undefined>(
+    typeof Audio !== "undefined" ? new Audio("/error.mp3") : undefined
+  );
+  const successAudio = useRef<HTMLAudioElement | undefined>(
+    typeof Audio !== "undefined" ? new Audio("/success.mp3") : undefined
+  );
+  const setLoading = useContext(SetLoadingContext);
   useEffect(() => {
-    setAudio(new Audio("/error.mp3"));
+    setLoading(() => false);
   }, []);
 
   function handleLoginID(e: ChangeEvent<HTMLInputElement>) {
@@ -35,6 +49,7 @@ function Login() {
   }
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    setLoading((val) => !val);
     e.preventDefault();
     try {
       const res = await axios.post("/api/login", {
@@ -43,18 +58,21 @@ function Login() {
       });
 
       if (res.data === "Ok") {
+        await successAudio.current?.play();
         sessionStorage.setItem("login", "true");
         router.push("/admin/dashboard");
         return;
       } else {
-        await audio?.play();
+        await errorAudio.current?.play();
         setError("Error");
         setBtnDisabled(true);
         navigator.vibrate(300);
+        setLoading((val) => !val);
         return;
       }
     } catch (e) {
       console.log(e);
+      setLoading((val) => !val);
     }
   }
 
@@ -141,7 +159,7 @@ function Login() {
             Login
           </button>
         </div>
-        <Link href="/admin/dashboard">
+        <Link href="/admin/dashboard" onClick={() => setLoading(() => true)}>
           <p className="login-frm__guest">View as a guest</p>
         </Link>
       </form>

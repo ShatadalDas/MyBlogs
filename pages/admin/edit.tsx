@@ -1,6 +1,7 @@
 import React, {
   createContext,
   Dispatch,
+  useContext,
   useEffect,
   useReducer,
   useState,
@@ -14,6 +15,7 @@ import { useMultiStepForm } from "../../utils/hooks";
 import { Navbar } from "../../utils/components";
 import { createNewBlog, editAnExistingBlog } from "../../utils/functions";
 import Head from "next/head";
+import { SetLoadingContext } from "../_app";
 
 export type BlogDataType = {
   content: string;
@@ -70,13 +72,16 @@ function Edit({ data }: ServerProps) {
 
   //* States
   const [loggedIn, setLoggedIn] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
+  const setLoading = useContext(SetLoadingContext);
+  useEffect(() => {
+    setLoading(() => false);
+  }, []);
 
   useEffect(() => {
     /*
-    * Session Storage has be used inside a
-    * useEffect as it's a server component 
-    */    
+     * Session Storage has be used inside a
+     * useEffect as it's a server component
+     */
     setLoggedIn(sessionStorage.getItem("login"));
 
     return () => {
@@ -85,16 +90,16 @@ function Edit({ data }: ServerProps) {
   }, []);
 
   async function finish() {
-    setLoading(true);
+    setLoading(() => true);
     const isEmpty = Object.values(state).some((val) => !val);
 
     if (isEmpty) {
-      setLoading(false);
+      setLoading(() => false);
       return alert("Please fill all the fields..!");
     }
 
     if (!loggedIn) {
-      setLoading(false);
+      setLoading(() => false);
       return alert(
         "Sorry, but only admin can create, edit or delete a blog..!"
       );
@@ -104,7 +109,6 @@ function Edit({ data }: ServerProps) {
       await editAnExistingBlog(state, router, setLoading);
       return;
     }
-
     await createNewBlog(state, router, setLoading);
   }
 
@@ -121,7 +125,7 @@ function Edit({ data }: ServerProps) {
           }
         />
       </Head>
-      
+
       <form className="edit-wrapper" onSubmit={(e) => e.preventDefault()}>
         <Navbar
           type="form"
@@ -130,7 +134,6 @@ function Edit({ data }: ServerProps) {
           back={back}
           next={next}
           finish={finish}
-          loading={loading}
         />
         <StateContext.Provider value={state}>
           <DispatchContext.Provider value={dispatch}>
