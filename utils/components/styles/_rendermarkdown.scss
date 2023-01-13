@@ -24,7 +24,7 @@
   }
 
   a {
-    color: var(--clr-neutral-200);
+    color: clr(neutral, 200);
     margin-inline: 0.2em;
     font-size: 1.1em;
     &:where(:hover, :focus-visible) {
@@ -78,7 +78,7 @@
   [class*="code-"] {
     font-size: 0.6em;
     position: relative;
-    margin-block-start: .5em;
+    margin-block-start: 0.5em;
     &:hover > .copy {
       visibility: visible;
     }

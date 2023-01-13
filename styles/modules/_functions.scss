@@ -1,3 +1,6 @@
+@use "sass:map";
+@use "./clrs" as *;
+
 @function headings($from: 1, $to: 6, $excl: 0) {
   $res: "";
   @for $i from $from through $to {
@@ -6,4 +9,9 @@
     }
   }
   @return $res;
+}
+
+@function clr($type, $weight) {
+  $shades: map-get($clr, $type);
+  @return map-get($shades, $weight);
 }

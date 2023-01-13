@@ -1,4 +1,5 @@
 @use "./mixins" as *;
+@use "./functions" as *;
 
 *,
 *::after,
@@ -26,10 +27,10 @@ textarea {
 body {
   background-image: linear-gradient(
     45deg,
-    var(--clr-secondary-850),
-    var(--clr-neutral-850)
+    clr(secondary, 850),
+    clr(neutral, 850)
   );
-  color: var(--clr-primary-100);
+  color: clr(primary, 100);
   min-height: 100vh;
 }
 
@@ -38,8 +39,8 @@ button {
 }
 
 ::selection {
-  background-color: var(--clr-primary-300);
-  color: var(--clr-primary-100);
+  background-color: clr(primary, 300);
+  color: clr(primary, 100);
 }
 
 @include thin-scrollbar;

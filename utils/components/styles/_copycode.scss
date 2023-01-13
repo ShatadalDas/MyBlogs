@@ -1,4 +1,5 @@
 @use "../../../styles/modules/mixins" as *;
+@use "../../../styles/modules/functions" as *;
 
 .copy {
   font-size: 1em;
@@ -8,17 +9,17 @@
   right: 1em;
   height: 2em;
   aspect-ratio: 1;
-  background-color: var(--clr-primary-900);
+  background-color: clr(primary, 900);
   border-radius: 50%;
   cursor: pointer;
-  
+
   &__icon {
-    fill: var(--clr-primary-100);
+    fill: clr(primary, 100);
   }
-  
+
   span {
     color: hsl(120, 100%, 50%);
-    font-size: .6em;
+    font-size: 0.6em;
     position: absolute;
     left: -4.5em;
   }
