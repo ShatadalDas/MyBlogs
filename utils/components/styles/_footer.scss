@@ -3,8 +3,8 @@
 
 .footer {
   @include font-small;
-  background-color: clr(secondary, 850);
-  color: clr(primary, 100);
+  background-color: adjust-saturation(clr(secondary, 900), 80%);
+  color: clr(neutral, 0);
   padding: 1em 0;
   box-shadow: 0.1em 0 0.5em clr(primary, 900);
 

@@ -21,7 +21,7 @@
   }
 
   &__grp {
-    --clr: #fff4;
+    --clr: #{adjust-alpha(clr(neutral, 0), 0.267)};
     font-family: var(--fnt-lato);
     position: relative;
     width: 60%;
@@ -30,7 +30,7 @@
     padding: 0 0.5em;
 
     &:focus-within {
-      --clr: #fff;
+      --clr: #{clr(neutral, 0)};
     }
 
     input {
@@ -38,7 +38,7 @@
       letter-spacing: 0.025em;
       width: 100%;
       padding: 0.5em 0;
-      color: clr(primary, 100);
+      color: clr(neutral, 0);
 
       &:focus-visible {
         outline: 0px solid transparent;
@@ -85,8 +85,8 @@
       border-radius: 0.2em;
       font-family: var(--fnt-ubuntu);
       font-weight: 600;
-      background-color: clr(neutral, 400);
-      color: clr(primary, 100);
+      background-color: clr(accent, 400);
+      color: clr(neutral, 0);
 
       &:disabled {
         filter: brightness(40%);
@@ -94,7 +94,7 @@
       }
 
       &:focus-visible {
-        outline: 3px solid clr(neutral, 100);
+        outline: 3px solid clr(accent, 100);
         outline-offset: 0.1em;
       }
     }
@@ -104,10 +104,10 @@
     font-family: var(--fnt-ubuntu);
     font-size: 0.8em;
     font-weight: 500;
-    color: clr(secondary, 200);
+    color: clr(secondary, 300);
 
     &:where(:hover, :focus) {
-      color: clr(secondary, 300);
+      color: clr(secondary, 400);
       text-decoration: underline;
     }
   }

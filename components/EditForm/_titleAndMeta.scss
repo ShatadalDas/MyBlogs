@@ -10,12 +10,12 @@
   padding: 1em;
 
   textarea {
-    font-size: 1.5em;
     resize: none;
-    background-color: #fff2;
+    font-size: 1.5em;
+    background-color: adjust-alpha(clr(neutral, 0), 0.1);
+    color: clr(neutral, 0);
     border-radius: 0.3em;
     padding: 0.5em;
-    color: clr(primary, 100);
     font-family: var(--fnt-work-sans);
     font-weight: 600;
     letter-spacing: 0.05em;

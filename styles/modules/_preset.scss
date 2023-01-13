@@ -27,10 +27,10 @@ textarea {
 body {
   background-image: linear-gradient(
     45deg,
-    clr(secondary, 850),
-    clr(neutral, 850)
+    adjust-saturation(clr(secondary, 900), 80%),
+    clr(accent, 850)
   );
-  color: clr(primary, 100);
+  color: clr(neutral, 0);
   min-height: 100vh;
 }
 
@@ -40,7 +40,7 @@ button {
 
 ::selection {
   background-color: clr(primary, 300);
-  color: clr(primary, 100);
+  color: clr(neutral, 0);
 }
 
 @include thin-scrollbar;

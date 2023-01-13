@@ -27,7 +27,7 @@
 
     svg {
       font-size: 0.7em;
-      fill: clr(primary, 100);
+      fill: clr(neutral, 0);
     }
 
     &:disabled {
@@ -47,7 +47,7 @@
       transform-origin: left;
       font-family: var(--fnt-lato);
       font-weight: 700;
-      color: clr(primary, 100);
+      color: clr(neutral, 0);
       font-size: var(--fnt-size);
 
       @include mq("pointer") {
@@ -77,25 +77,25 @@
   }
 
   &--admin {
-    background-color: clr(neutral, 500);
+    background-color: clr(accent, 500);
     &:focus-visible {
-      outline: 2px solid clr(neutral, 500);
+      outline: 2px solid clr(accent, 500);
       outline-offset: 2px;
     }
   }
 
   &--code {
-    background-color: clr(secondary, 400);
+    background-color: clr(secondary, 500);
     &:focus-visible {
-      outline: 2px solid clr(secondary, 400);
+      outline: 2px solid clr(secondary, 500);
       outline-offset: 2px;
     }
   }
 
   &--write {
-    background-color: clr(neutral, 400);
+    background-color: clr(accent, 400);
     &:focus-visible {
-      outline: 2px solid clr(neutral, 400);
+      outline: 2px solid clr(accent, 400);
       outline-offset: 2px;
     }
   }
@@ -117,9 +117,9 @@
     }
   }
   &--next {
-    background-color: clr(neutral, 400);
+    background-color: clr(accent, 400);
     &:focus-visible {
-      outline: 2px solid clr(neutral, 400);
+      outline: 2px solid clr(accent, 400);
       outline-offset: 2px;
     }
     svg {
@@ -127,9 +127,9 @@
     }
   }
   &--done {
-    background-color: clr(secondary, 400);
+    background-color: clr(secondary, 500);
     &:focus-visible {
-      outline: 2px solid clr(secondary, 400);
+      outline: 2px solid clr(secondary, 500);
       outline-offset: 2px;
     }
   }
@@ -139,11 +139,11 @@
     font-size: 0.75em;
     font-family: var(--fnt-lato);
     font-weight: 700;
-    color: clr(primary, 100);
-    background-color: clr(neutral, 400);
+    color: clr(neutral, 0);
+    background-color: clr(accent, 400);
 
     &:focus-visible {
-      outline: 2px solid clr(neutral, 400);
+      outline: 2px solid clr(accent, 400);
       outline-offset: 2px;
     }
     &:is(:hover, :focus-visible) {

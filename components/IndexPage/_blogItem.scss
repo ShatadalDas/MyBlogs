@@ -9,7 +9,7 @@
   background-image: linear-gradient(
     23.05deg,
     clr(primary, 800) 9.87%,
-    clr(secondary, 700) 0 125.08%
+    clr(secondary, 800) 125.08%
   );
   padding: 0.8em;
   border-radius: 0.3em;
@@ -27,7 +27,7 @@
 
   &__title {
     font-size: 1.3em;
-    color: clr(primary, 100);
+    color: clr(neutral, 0);
     font-family: var(--fnt-work-sans);
     font-weight: 600;
     letter-spacing: 0.02em;
@@ -36,7 +36,7 @@
   }
 
   &__time {
-    color: clr(primary, 200);
+    color: clr(primary, 150);
     font-family: var(--fnt-ubuntu);
     font-size: 0.55em;
     text-align: right;

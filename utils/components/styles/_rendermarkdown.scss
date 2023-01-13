@@ -24,7 +24,7 @@
   }
 
   a {
-    color: clr(neutral, 200);
+    color: clr(accent, 200);
     margin-inline: 0.2em;
     font-size: 1.1em;
     &:where(:hover, :focus-visible) {

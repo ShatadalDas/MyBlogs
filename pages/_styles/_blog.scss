@@ -18,7 +18,7 @@
       font-size: 0.3em;
       font-family: var(--fnt-ubuntu);
       font-weight: 500;
-      color: clr(primary, 200);
+      color: clr(primary, 150);
       position: absolute;
       bottom: -2.5em;
       left: 0;
@@ -31,7 +31,6 @@
     max-width: 50rem;
     margin: 0 auto;
     padding: 0.5em 1em 1em;
-    scroll-behavior: smooth;
   }
 
   &--back {
@@ -49,12 +48,12 @@
       $size: 1em;
       height: $size;
       width: calc($size * 1.1);
-      fill: clr(secondary, 400);
+      fill: clr(secondary, 500);
     }
 
     span {
       font-size: 0.9em;
-      color: clr(primary, 100);
+      color: clr(neutral, 0);
     }
   }
 }

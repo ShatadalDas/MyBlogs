@@ -99,12 +99,12 @@
 
   ::-webkit-scrollbar-track {
     @include pill;
-    background-color: #555;
+    background-color: clr(neutral, 700);
   }
 
   ::-webkit-scrollbar-thumb {
     @include pill;
-    background-color: clr(primary, 100);
+    background-color: clr(neutral, 100);
   }
 }
 

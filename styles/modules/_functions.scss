@@ -1,4 +1,5 @@
 @use "sass:map";
+@use "sass:color";
 @use "./clrs" as *;
 
 @function headings($from: 1, $to: 6, $excl: 0) {
@@ -14,4 +15,25 @@
 @function clr($type, $weight) {
   $shades: map-get($clr, $type);
   @return map-get($shades, $weight);
+}
+
+@function adjust-alpha($color: #000, $alpha: 1) {
+  @if $alpha < 0 or $alpha > 1 {
+    @error "Invalid Alpha Value";
+    @return null;
+  }
+  @return hsla(
+    color.hue($color),
+    color.saturation($color),
+    color.lightness($color),
+    $alpha
+  );
+}
+
+@function adjust-saturation($color: #000, $saturation: 50%) {
+  @if $saturation < 0% or $saturation > 100% {
+    @error "Invalid Saturation Value";
+    @return null;
+  }
+  @return hsl(color.hue($color), $saturation, color.lightness($color));
 }
