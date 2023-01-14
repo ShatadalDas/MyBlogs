@@ -1,12 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import React, {
-  Dispatch,
-  SetStateAction,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import React, { useContext } from "react";
 import { HiPencil } from "react-icons/hi2";
 import { IoIosArrowBack } from "react-icons/io";
 import { MdDone } from "react-icons/md";
@@ -14,25 +8,30 @@ import { useRouter } from "next/router";
 import { useFont } from "../hooks";
 import { SetLoadingContext } from "../../pages/_app";
 
-type Props = {
-  type: "index" | "dashboard" | "form" | "login";
-  loading?: boolean;
-  next?: () => void;
-  back?: () => void;
-  finish?: () => void;
-  isFirstStep?: boolean;
-  isLastStep?: boolean;
-};
-type CompProps = {
-  type: "index" | "dashboard" | "form" | "login";
-  next?: () => void;
-  back?: () => void;
-  finish?: () => void;
-  isFirstStep?: boolean;
-  isLastStep?: boolean;
+type IndexProps = {
+  type: "index";
 };
 
-function Navbar({ type, next, back, finish, isFirstStep, isLastStep }: Props) {
+type DashboardProps = {
+  type: "dashboard";
+};
+
+type FormProps = {
+  type: "form";
+  next: () => void;
+  back: () => void;
+  finish: () => void;
+  isFirstStep: boolean;
+  isLastStep: boolean;
+};
+
+type LoginProps = {
+  type: "login";
+};
+
+type Props = IndexProps | DashboardProps | FormProps | LoginProps;
+
+function Navbar(props: Props) {
   const router = useRouter();
   const { lato } = useFont();
   const setLoading = useContext(SetLoadingContext);
@@ -52,31 +51,17 @@ function Navbar({ type, next, back, finish, isFirstStep, isLastStep }: Props) {
           title="Back"
         />
         <ul className="navbar__list">
-          <RenderButtons
-            type={type}
-            next={next}
-            back={back}
-            finish={finish}
-            isFirstStep={isFirstStep}
-            isLastStep={isLastStep}
-          />
+          <RenderButtons {...props} />
         </ul>
       </nav>
     </header>
   );
 }
 
-function RenderButtons({
-  type,
-  next,
-  back,
-  finish,
-  isFirstStep,
-  isLastStep,
-}: CompProps) {
+function RenderButtons(props: Props) {
   const router = useRouter();
   const setLoading = useContext(SetLoadingContext);
-  switch (type) {
+  switch (props.type) {
     case "index":
       return (
         <>
@@ -138,21 +123,21 @@ function RenderButtons({
           <li className="navbar__items">
             <button
               className="navbar--back"
-              onClick={back}
-              disabled={isFirstStep}
+              onClick={props.back}
+              disabled={props.isFirstStep}
             >
               <IoIosArrowBack />
             </button>
           </li>
-          {isLastStep ? (
+          {props.isLastStep ? (
             <li className="navbar__items">
-              <button className="navbar--done" onClick={finish}>
+              <button className="navbar--done" onClick={props.finish}>
                 <MdDone />
               </button>
             </li>
           ) : (
             <li className="navbar__items">
-              <button className="navbar--next" onClick={next}>
+              <button className="navbar--next" onClick={props.next}>
                 <IoIosArrowBack />
               </button>
             </li>
